@@ -39,6 +39,20 @@ def journal(paper):
     return f'<em>{E(paper["journal"])}</em> {paper["year"]}, {E(paper["volume"])}{issue}, {E(paper["pages"])}.'
 
 
+def publication_role(paper):
+    role = "First author" if paper["first_author"] else "Co-author"
+    return f'{role} ({paper["author_position"]}/{len(paper["authors"])})'
+
+
+def journal_metrics(paper):
+    metrics = paper["journal_metrics"]
+    jif = external(metrics["impact_factor_url"], f'{metrics["jif_year"]} JIF: {E(metrics["impact_factor"])}',
+                   extra='title="Journal Impact Factor; opens metric source"')
+    quartile = external(metrics["quartile_url"], f'{metrics["jcr_year"]} JCR: {E(metrics["quartile"])}',
+                        extra='title="Journal Citation Reports quartile; opens source"')
+    return f'<p class="journal-metrics">{jif}<span aria-hidden="true"> · </span>{quartile}</p>'
+
+
 def make_head(p, title=None, path="/", description=None):
     title = title or f'{p["name"]} | Surface Science & Soft Matter'
     desc = description or p["description"]
@@ -134,14 +148,14 @@ def make_home(p):
         </article>'''
     papers = ""
     for item in p["publications"]:
-        first = '<span class="first-author">First author</span>' if item["first_author"] else ""
         papers += f'''<article class="publication" id="{E(item['id'])}">
           <div class="pub-year">{item['year']}</div>
           <div class="pub-body">
-            <div class="pub-kicker"><span>{E(item['type'])}</span>{first}</div>
+            <div class="pub-kicker"><span>{E(item['type'])}</span><span class="author-role">{E(publication_role(item))}</span></div>
             <h3 class="pub-title">{external('https://doi.org/' + item['doi'], E(item['title']))}</h3>
             <p class="authors">{authors(item)}</p>
             <p class="journal">{journal(item)}</p>
+            {journal_metrics(item)}
             <details class="bibtex"><summary>BibTeX</summary>
               <pre id="bib-{E(item['id'])}">{E(bibtex(item))}</pre>
               <div class="citation-actions"><button type="button" class="copy-button" data-copy-target="bib-{E(item['id'])}">Copy BibTeX</button><a href="files/{E(item['id'])}.bib" download>Download .bib</a></div>
@@ -224,7 +238,7 @@ def make_cv(p):
         edu += f'<div class="cv-entry"><h3>{E(item["school"])}</h3><time>{E(item["dates"])}</time><p>{E(item["degree"])}</p>{note}</div>'
     jobs = "".join(f'<div class="cv-entry"><h3>{E(x["title"])} · {E(x["organisation"])}</h3><time>{E(x["dates"])}</time><p>{E(x["note"])}</p></div>' for x in p["appointments"])
     research = "".join(f'<div class="cv-entry"><h3>{E(x["title"])}</h3><p>{E(x["details"])}</p></div>' for x in p["research"])
-    pubs = "".join(f'<li class="cv-publication">{authors(x, terminal_period=True)} {external("https://doi.org/" + x["doi"], E(x["title"]))}. {journal(x)} DOI: {E(x["doi"])}.</li>' for x in p["publications"])
+    pubs = "".join(f'<li class="cv-publication"><p class="cv-authorship">{E(publication_role(x))}</p>{authors(x, terminal_period=True)} {external("https://doi.org/" + x["doi"], E(x["title"]))}. {journal(x)} DOI: {E(x["doi"])}.{journal_metrics(x)}</li>' for x in p["publications"])
     honours = "".join(f'<li>{E(x["title"])} — {E(x["detail"])} ({E(x["year"])}).</li>' for x in p["honours"])
     skills = "".join(f'<p><strong>{E(x["label"])}:</strong> {E(x["text"])}</p>' for x in p["skills"])
     profiles = "".join(external(x["url"], E(x["name"]) + " ↗") for x in p["profiles"])
@@ -254,6 +268,20 @@ def validate_profile(p):
     for item in p["publications"]:
         if not item["doi"].startswith("10."):
             raise ValueError("Invalid DOI")
+        position = item["author_position"]
+        if not 1 <= position <= len(item["authors"]) or item["authors"][position - 1] != p["name"]:
+            raise ValueError("Publication author position must match the full ordered author list")
+        if item["first_author"] != (position == 1):
+            raise ValueError("First-author label must match the publication author position")
+        metrics = item["journal_metrics"]
+        if not re.fullmatch(r"\d+(?:\.\d+)?", metrics["impact_factor"]) or float(metrics["impact_factor"]) <= 0:
+            raise ValueError("Invalid Journal Impact Factor")
+        if metrics["quartile"] not in ("Q1", "Q2", "Q3", "Q4"):
+            raise ValueError("Invalid JCR quartile")
+        if metrics["jcr_year"] != metrics["jif_year"] + 1:
+            raise ValueError("JCR release year must follow the JIF data year")
+        if not all(metrics[key].startswith("https://") for key in ("impact_factor_url", "quartile_url")):
+            raise ValueError("Journal metric sources must use HTTPS")
     supervisor_ids = {person["id"] for person in p["supervisors"]}
     if len(supervisor_ids) != len(p["supervisors"]):
         raise ValueError("Supervisor IDs must be unique")

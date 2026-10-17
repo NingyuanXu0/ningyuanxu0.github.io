@@ -12,6 +12,8 @@ GitHub 仓库：https://github.com/NingyuanXu0/ningyuanxu0.github.io 。
 
 三位导师均提供邮箱、课题组主页和 Google Scholar 链接。专利部分区分已受理申请与已公布申请，两项公开记录提供查询链接。
 
+论文均展示完整作者姓名并遵循正式署名顺序，同时标出你的作者位次：ACIS 为 1/5，Small 为 6/12，ACS Nano 为 3/9。期刊指标采用 2025 年 JIF 和 2026 年发布的 JCR 分区，各项指标附有来源链接。
+
 ## 修改内容
 
 内容源文件为 `data/profile.json`。
@@ -20,7 +22,7 @@ GitHub 仓库：https://github.com/NingyuanXu0/ningyuanxu0.github.io 。
 | --- | --- |
 | 姓名、身份和研究简介 | `name`、`role`、`affiliation`、`intro`、`tagline` |
 | 研究方向和详细研究经历 | `research` |
-| 论文及 DOI | `publications` |
+| 论文、完整作者、作者位次及期刊指标 | `publications` 中的 `authors`、`author_position`、`journal_metrics` |
 | 专利名称、发明人、申请号和公开记录 | `patents` |
 | 导师姓名、邮箱、课题组及 Google Scholar | `supervisors` |
 | 教育及研究／教学经历 | `education`、`appointments` |
@@ -30,6 +32,8 @@ GitHub 仓库：https://github.com/NingyuanXu0/ningyuanxu0.github.io 。
 | 更新日期 | `updated`，格式为 `YYYY-MM-DD` |
 
 `research` 和 `appointments` 中的 `show_on_homepage` 决定条目是否显示在首页；完整内容仍会进入 CV。研究条目的 `homepage_title` 和 `homepage_description` 用于精简首页展示，`details` 用于完整 CV。
+
+论文的 `authors` 数组须按正式署名顺序填写完整姓名。`author_position` 从 1 开始，生成脚本会核对这一位置是否为你的名字。`journal_metrics` 分别保存 JIF 数据年份与 JCR 发布年份，例如 2025 JIF 对应 2026 JCR；以后更新指标时请同时更新年份、分区和来源链接。
 
 修改后在项目文件夹运行：
 

@@ -25,7 +25,19 @@ The instructions use the documented `username.github.io` user-site pattern, with
 - [Small article record](https://onlinelibrary.wiley.com/doi/10.1002/smll.202409870) and DOI [10.1002/smll.202409870](https://doi.org/10.1002/smll.202409870).
 - [ACS Nano article record](https://pubs.acs.org/doi/10.1021/acsnano.4c17475), [PubMed record](https://pubmed.ncbi.nlm.nih.gov/39945478/), and DOI [10.1021/acsnano.4c17475](https://doi.org/10.1021/acsnano.4c17475).
 
-Full author names are used where verified; the Small paper retains the initials supplied in the CV.
+All three papers show complete author names in the published order. The Small paper's twelve full names were checked against its Wiley article page and Crossref DOI record. Both sources spell the eleventh author's given name **Deuhui**, which is retained in this citation; the supervisor profile uses the institutional spelling **Dehui Wang**. ACIS's five names were also checked against PubMed metadata, and ACS Nano's nine names against its Crossref record. Ningyuan Xu's positions are 1/5, 6/12 and 3/9 respectively.
+
+## Journal metrics: 2025 data, 2026 JCR release
+
+The homepage and CV distinguish the JIF data year from the JCR release year. Metric labels link to the public sources used for the values and quartiles.
+
+| Journal | 2025 JIF | JCR quartile | Sources checked |
+| --- | --- | --- | --- |
+| Advances in Colloid and Interface Science | 23.7 | Q1 | [Elsevier journal homepage](https://www.sciencedirect.com/journal/advances-in-colloid-and-interface-science); [Reference Citation Analysis JIF record](https://referencecitationanalysis.com/InCiteJournalInfo?id=1178), explicitly citing 2025 JCR data and 2026 Clarivate copyright |
+| Small | 11.8 | Q1 | [Wiley journal homepage](https://onlinelibrary.wiley.com/journal/16136829); [Manusights metric source review](https://manusights.com/blog/small-impact-factor), explicitly identifying 2025 citation data in the 2026 JCR release |
+| ACS Nano | 17.3 | Q1 | [Manusights metric source review](https://manusights.com/blog/acs-nano-impact-factor), explicitly identifying 2025 JIF and the 2026 JCR release; corroborated by the public Bioxbio journal listing |
+
+Quartiles follow the linked public JCR-derived records. The displayed values are annual Journal Impact Factors, and the reported quartiles are JCR quartiles. The original publisher article pages and DOI metadata determine author names and order. The complete ordered names also appear in the downloadable BibTeX records.
 
 ## Supervisor and patent sources checked on 17 October 2026
 

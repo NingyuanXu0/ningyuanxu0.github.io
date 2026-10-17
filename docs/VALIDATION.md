@@ -1,6 +1,6 @@
 # Release validation
 
-Updated on 17 October 2026 for the readability, supervisor and patent revision.
+Updated on 17 October 2026 for the readability, supervisor, patent, authorship and journal-metric revision.
 
 ## Source checks
 
@@ -10,6 +10,8 @@ Updated on 17 October 2026 for the readability, supervisor and patent revision.
 - Checked three supervisors' email, group and Google Scholar destinations in both the homepage and CV.
 - Checked all three patent application entries and both public patent records in the homepage and CV.
 - Checked the three published-paper BibTeX records.
+- Checked complete author lists with 5, 12 and 9 names, owner positions 1, 6 and 3, and explicit first-author/co-author labels in the homepage and CV.
+- Checked 2025 JIF values 23.7, 11.8 and 17.3, 2026 JCR Q1 labels and metric-source links.
 - JavaScript syntax and whitespace checks are run before publishing.
 
 ## Browser checks

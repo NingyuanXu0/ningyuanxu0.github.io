@@ -9,6 +9,8 @@ A static academic homepage for Ningyuan Xu, M.Sc. student in Chemical Modelling 
 ## Content and design
 
 - A concise homepage covering two research areas, three published papers, three first-inventor patent applications, education and research appointments.
+- Complete author names in publication order, with Ningyuan Xu's position shown on every paper: 1/5, 6/12 and 3/9.
+- Linked 2025 Journal Impact Factors and 2026 JCR quartiles in the homepage and CV.
 - Supervisor email, group website and Google Scholar links for Ran Ni, Dehui Wang and Xu Deng.
 - Arial/Helvetica body text with Georgia headings. Body text is 18px on desktop and 17px on phones; navigation is 16px and secondary text is generally 15–17px.
 - A full, printable academic CV at `cv.html`, retaining detailed research, teaching, skills and selected honours.
@@ -59,6 +61,8 @@ python3 scripts/check.py _site
 | `docs/VALIDATION.md` | Release verification record |
 
 Use `show_on_homepage` to select featured research and appointments while retaining full entries in the CV. Supervisor contact records are stored under `supervisors`; patent bibliography and filing/publication records are stored under `patents`.
+
+Each publication's `authors` is the full ordered list; `author_position` is one-based and is checked against Ningyuan Xu's name. `journal_metrics` records the JIF data year, JCR release year, value, quartile and source links. Update the metric years together when adopting a later JCR release.
 
 ## Sources and licensing
 

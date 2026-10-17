@@ -120,52 +120,33 @@
       "doi": "10.1016/j.cis.2026.104028",
       "type": "Review",
       "first_author": true,
+      "author_position": 1,
+      "journal_metrics": {
+        "impact_factor": "23.7",
+        "jif_year": 2025,
+        "jcr_year": 2026,
+        "quartile": "Q1",
+        "impact_factor_url": "https://www.sciencedirect.com/journal/advances-in-colloid-and-interface-science",
+        "quartile_url": "https://referencecitationanalysis.com/InCiteJournalInfo?id=1178"
+      },
       "summary": "A review of superhydrophobic surface design and applications across electrical systems."
     },
     {
       "id": "song2025breathable",
       "title": "Breathable Window Screen Against High-velocity Droplet Penetration",
       "authors": [
-        "Song, J.",
-        "Luo, Y.",
-        "Yang, J.",
-        "Li, Y.",
-        "Qi, H.",
-        "Xu, Ningyuan",
-        "Shao, H.",
-        "Zhang, Y.",
-        "Zhou, Y.",
-        "Luo, Z.",
-        "Wang, D.",
-        "Deng, X."
-      ],
-      "display_authors": [
-        "Song, J.",
-        "Luo, Y.",
-        "Yang, J.",
-        "Li, Y.",
-        "Qi, H.",
-        "Xu, N.",
-        "Shao, H.",
-        "Zhang, Y.",
-        "Zhou, Y.",
-        "Luo, Z.",
-        "Wang, D.",
-        "Deng, X."
-      ],
-      "bib_authors": [
-        "Song, J.",
-        "Luo, Y.",
-        "Yang, J.",
-        "Li, Y.",
-        "Qi, H.",
-        "Xu, Ningyuan",
-        "Shao, H.",
-        "Zhang, Y.",
-        "Zhou, Y.",
-        "Luo, Z.",
-        "Wang, D.",
-        "Deng, X."
+        "Jianing Song",
+        "Yao Luo",
+        "Jinlong Yang",
+        "Yong Li",
+        "Harry Qi",
+        "Ningyuan Xu",
+        "Huijuan Shao",
+        "Yishen Zhang",
+        "Yan Zhou",
+        "Zhenbing Luo",
+        "Deuhui Wang",
+        "Xu Deng"
       ],
       "year": 2025,
       "journal": "Small",
@@ -175,6 +156,15 @@
       "doi": "10.1002/smll.202409870",
       "type": "Research article",
       "first_author": false,
+      "author_position": 6,
+      "journal_metrics": {
+        "impact_factor": "11.8",
+        "jif_year": 2025,
+        "jcr_year": 2026,
+        "quartile": "Q1",
+        "impact_factor_url": "https://onlinelibrary.wiley.com/journal/16136829",
+        "quartile_url": "https://manusights.com/blog/small-impact-factor"
+      },
       "summary": "A bilayer window screen designed to resist high-velocity droplet penetration while maintaining breathability."
     },
     {
@@ -199,6 +189,15 @@
       "doi": "10.1021/acsnano.4c17475",
       "type": "Review",
       "first_author": false,
+      "author_position": 3,
+      "journal_metrics": {
+        "impact_factor": "17.3",
+        "jif_year": 2025,
+        "jcr_year": 2026,
+        "quartile": "Q1",
+        "impact_factor_url": "https://manusights.com/blog/acs-nano-impact-factor",
+        "quartile_url": "https://manusights.com/blog/acs-nano-impact-factor"
+      },
       "summary": "A review of stimuli-responsive strategies for controlling surface wettability and their applications."
     }
   ],
