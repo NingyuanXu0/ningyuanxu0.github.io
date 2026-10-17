@@ -27,9 +27,11 @@ def bibtex(paper):
     return "@article{" + paper["id"] + ",\n" + ",\n".join(f"  {key} = {{{value}}}" for key, value in rows) + "\n}"
 
 
-def authors(paper):
-    return ", ".join(f'<strong>{E(name)}</strong>' if name in ("Ningyuan Xu", "Xu, N.", "Xu, Ningyuan") else E(name)
-                     for name in paper.get("display_authors", paper["authors"]))
+def authors(paper, terminal_period=False):
+    names = paper.get("display_authors", paper["authors"])
+    rendered = ", ".join(f'<strong>{E(name)}</strong>' if name in ("Ningyuan Xu", "Xu, N.", "Xu, Ningyuan") else E(name)
+                         for name in names)
+    return rendered + ("." if terminal_period and not names[-1].endswith(".") else "")
 
 
 def journal(paper):
@@ -222,7 +224,7 @@ def make_cv(p):
         edu += f'<div class="cv-entry"><h3>{E(item["school"])}</h3><time>{E(item["dates"])}</time><p>{E(item["degree"])}</p>{note}</div>'
     jobs = "".join(f'<div class="cv-entry"><h3>{E(x["title"])} · {E(x["organisation"])}</h3><time>{E(x["dates"])}</time><p>{E(x["note"])}</p></div>' for x in p["appointments"])
     research = "".join(f'<div class="cv-entry"><h3>{E(x["title"])}</h3><p>{E(x["details"])}</p></div>' for x in p["research"])
-    pubs = "".join(f'<li class="cv-publication">{authors(x)}. {external("https://doi.org/" + x["doi"], E(x["title"]))}. {journal(x)} DOI: {E(x["doi"])}.</li>' for x in p["publications"])
+    pubs = "".join(f'<li class="cv-publication">{authors(x, terminal_period=True)} {external("https://doi.org/" + x["doi"], E(x["title"]))}. {journal(x)} DOI: {E(x["doi"])}.</li>' for x in p["publications"])
     honours = "".join(f'<li>{E(x["title"])} — {E(x["detail"])} ({E(x["year"])}).</li>' for x in p["honours"])
     skills = "".join(f'<p><strong>{E(x["label"])}:</strong> {E(x["text"])}</p>' for x in p["skills"])
     profiles = "".join(external(x["url"], E(x["name"]) + " ↗") for x in p["profiles"])
