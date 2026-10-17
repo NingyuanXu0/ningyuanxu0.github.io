@@ -1,83 +1,69 @@
 # Ningyuan Xu · Academic Homepage
 
-A responsive academic homepage for **Ningyuan Xu**, M.Sc. student in Chemical Modelling at Nanyang Technological University, Singapore.
+A static academic homepage for Ningyuan Xu, M.Sc. student in Chemical Modelling at Nanyang Technological University, Singapore.
 
-**Target public URL after deployment:** https://ningyuanxu0.github.io/
+**Live website:** https://ningyuanxu0.github.io/
 
-**GitHub account:** https://github.com/NingyuanXu0
+中文维护说明见 [START_HERE_zh.md](START_HERE_zh.md)。
 
-中文发布和维护指南见 [START_HERE_zh.md](START_HERE_zh.md)。
+## Content and design
 
-## Publish on GitHub Pages
+- A concise homepage covering two research areas, three published papers, three first-inventor patent applications, education and research appointments.
+- Supervisor email, group website and Google Scholar links for Ran Ni, Dehui Wang and Xu Deng.
+- Arial/Helvetica body text with Georgia headings. Body text is 18px on desktop and 17px on phones; navigation is 16px and secondary text is generally 15–17px.
+- A full, printable academic CV at `cv.html`, retaining detailed research, teaching, skills and selected honours.
+- Google Scholar, ORCID, ResearchGate and GitHub profile links.
+- All six owner email addresses. Additional academic addresses are available in an expandable contact section.
+- DOI links, BibTeX display, copy and downloads; public records for the two published patent applications.
+- Responsive navigation, light/dark themes, keyboard focus styles and reduced-motion support.
+- Search/social metadata, sitemap, robots.txt, favicon and a custom 404 page.
+- Local fonts and static files; no third-party scripts, analytics, forms or runtime framework.
 
-The repository contains complete, pre-generated HTML. No installation or build is required to publish it.
+## Edit and publish
 
-1. In the `NingyuanXu0` account, create a **public** repository named **`ningyuanxu0.github.io`**.
-2. Upload the **contents** of this directory. `index.html` must be in the repository root.
-3. Go to **Settings → Pages → Build and deployment → Source → Deploy from a branch**.
-4. Select **main**, then **/(root)**, and click **Save**.
-5. Wait for GitHub's Pages deployment to succeed. The public homepage will be at **https://ningyuanxu0.github.io/**.
+GitHub Pages serves `main` → `/(root)` with HTTPS enabled. The generated HTML is committed alongside its editable source.
 
-If that repository already exists, inspect its current contents before adding this site. This source package does not assume the repository is empty or overwrite any existing GitHub content.
+1. Edit `data/profile.json`.
+2. Run the generator and release checks with Python 3.9 or newer:
 
-## Included
+   ```bash
+   python3 scripts/build.py
+   python3 scripts/check.py
+   ```
 
-- English academic homepage with About, Research, Publications, Background, Honours and Contact sections.
-- Responsive desktop/mobile layout, keyboard navigation, light/dark theme and reduced-motion support.
-- Four requested profiles: Google Scholar, ORCID, ResearchGate and GitHub.
-- All six supplied email addresses. Academic addresses appear in study order: UESTC, Glasgow, then NTU. UESTC and Glasgow were a joint programme during 2022–2026.
-- Three published journal articles, DOI links, publication filters and BibTeX export/copy.
-- A printable public academic CV at `cv.html`.
-- Original conceptual SVG illustrations. These are visual motifs, not experimental data.
-- Search/social metadata, Person structured data, sitemap, robots.txt, favicon and a 404 page.
-- No external fonts, third-party scripts, analytics, forms or runtime framework.
+3. Commit the JSON and regenerated files, then push to `main`. GitHub Pages publishes the new commit automatically.
 
-## File map
+The browser reads the generated HTML directly. Content remains available with JavaScript disabled.
 
-| File | Purpose |
-| --- | --- |
-| `index.html` | Complete, pre-generated homepage; can be opened locally |
-| `cv.html` | Public academic CV; print or save as PDF in the browser |
-| `data/profile.json` | Main editable source for profile, research, education, publications and contacts |
-| `assets/css/style.css` | Layout, responsive rules, colour themes and print styling |
-| `assets/js/main.js` | Optional navigation, theme, filter and copy interactions |
-| `assets/images/` | Original illustrations, favicon and social sharing image |
-| `files/publications.bib` | All published articles in BibTeX |
-| `scripts/build.py` | Standard-library Python generator |
-| `scripts/check.py` | Static release checks |
-| `scripts/draw_assets.py` | Optional illustration generation; assets are already included |
-| `START_HERE_zh.md` | Chinese publishing and maintenance guide |
-| `docs/REFERENCES.md` | Academic website examples and official deployment sources |
-| `docs/VALIDATION.md` | What was verified and the remaining verification limits |
-
-## Edit the content
-
-Use Python **3.9 or newer**. The site generator and static checks have no third-party dependencies.
-
-```bash
-python3 scripts/build.py
-python3 scripts/check.py
-```
-
-Edit `data/profile.json`, run those two commands, and commit the JSON plus the regenerated HTML, BibTeX and metadata. The browser does not fetch the JSON: all academic content remains visible when JavaScript is disabled.
-
-Open `index.html` directly to review the local version. You can also use any static HTTP server in your own development environment. The copy buttons require the browser's clipboard permission or a secure context; text selection and the `.bib` download remain available.
-
-To produce a clean deploy-only directory:
+To generate a separate deployment directory:
 
 ```bash
 python3 scripts/build.py --output _site
 python3 scripts/check.py _site
 ```
 
-Upload the contents of `_site` if you only want to host the generated website. Keep the editable source separately in your repository if you choose that arrangement.
+## File map
 
-## Design references
+| File | Purpose |
+| --- | --- |
+| `data/profile.json` | Profile, papers, patents, supervisors, education and contacts |
+| `scripts/build.py` | Standard-library Python generator for HTML, bibliography and metadata |
+| `scripts/check.py` | Release checks for content, links, local assets and structured data |
+| `index.html` | Generated homepage |
+| `cv.html` | Generated public academic CV |
+| `assets/css/style.css` | Typography, layout, responsive rules and print styling |
+| `assets/js/main.js` | Navigation, theme, citation copy and print controls |
+| `files/` | Published-paper BibTeX records |
+| `assets/images/` | Favicon, social preview and original optional illustrations |
+| `docs/REFERENCES.md` | Design references and sources used to verify added information |
+| `docs/VALIDATION.md` | Release verification record |
 
-This is an original static implementation informed by the content organisation and source examples in [Academic Pages](https://github.com/academicpages/academicpages.github.io), [al-folio](https://github.com/alshedivat/al-folio), and [Jon Barron's academic homepage](https://github.com/jonbarron/jonbarron.github.io). It does not depend on, fork, or include their theme implementation. See [docs/REFERENCES.md](docs/REFERENCES.md) for the specific source files examined.
+Use `show_on_homepage` to select featured research and appointments while retaining full entries in the CV. Supervisor contact records are stored under `supervisors`; patent bibliography and filing/publication records are stored under `patents`.
 
-## Content and licensing
+## Sources and licensing
 
-The initial academic facts were prepared from the owner's CV dated 14 October 2026 and the links and contact addresses supplied by the owner. Publication DOIs were checked against publisher/indexing records. Manuscripts in preparation are not listed as published papers. Citation counts are linked through Google Scholar rather than embedded as a potentially stale number.
+Academic facts derive from the owner's CV and supplied records. Patent application numbers, dates and inventor order were checked against the supplied CNIPA publication documents and acceptance notice. Public patent links refer to application publications. See `docs/REFERENCES.md` for the correction to the high-reflectivity coating entry and the supervisor sources.
 
-The implementation code and original illustrations are available under the MIT licence in `LICENSE`. Personal biographical information, publication titles and third-party names are not newly relicensed by this code licence. No publisher figures or article PDFs are bundled.
+The original design references include Academic Pages, al-folio and Jon Barron's homepage. The site uses its own implementation.
+
+Implementation code and original illustrations are covered by the MIT licence in `LICENSE`. The licence does not newly relicense personal biographical information, publication titles or third-party names. Publisher article PDFs and the supplied administrative receipt are not included in the repository.

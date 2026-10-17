@@ -26,3 +26,14 @@ The instructions use the documented `username.github.io` user-site pattern, with
 - [ACS Nano article record](https://pubs.acs.org/doi/10.1021/acsnano.4c17475), [PubMed record](https://pubmed.ncbi.nlm.nih.gov/39945478/), and DOI [10.1021/acsnano.4c17475](https://doi.org/10.1021/acsnano.4c17475).
 
 Full author names are used where verified; the Small paper retains the initials supplied in the CV.
+
+## Supervisor and patent sources checked on 17 October 2026
+
+- Ran Ni's group homepage: https://www3.ntu.edu.sg/home/r.ni/ . Its contact footer provides `r.ni@ntu.edu.sg` and Google Scholar user `BGIQc1IAAAAJ`.
+- Xu Deng's group homepage: https://www.x-mol.com/groups/dengxu?lang=en . The contact page at https://www.x-mol.com/groups/dengxu/contact_us provides `dengxu@uestc.edu.cn` and Google Scholar user `Z3RzWoQAAAAJ`.
+- Dehui Wang's official UESTC faculty page: https://faculty.uestc.edu.cn/wangdehui/zh_CN/index.htm . It provides `wangdehui@uestc.edu.cn` and Google Scholar user `SnQ4zFAAAAAJ`. His group link follows the owner's supplied X-MOL group URL.
+- CNIPA publication **CN120248697A**, supplied by the owner, and its public record: https://patents.google.com/patent/CN120248697A/en . Application `202510541383.1`, filed 28 April 2025, published 4 July 2025; inventors Xu Ningyuan and Yang Jinlong. This corrects the application number and co-inventor recorded in the earlier CV.
+- CNIPA publication **CN118455041A**, supplied by the owner, and its public record: https://patents.google.com/patent/CN118455041A/en . Application `202410272423.2`, filed 11 March 2024, published 9 August 2024; inventor order follows the official publication.
+- The owner's CNIPA acceptance notice for **一种液-气相变驱动的无透析液血液净化器** confirms application `202610812573.7`, the 7 June 2026 filing date, acceptance, and inventor order Xu Ningyuan, Shao Tianshui and Jiang Xinyi.
+
+The supplied patent records determine the displayed bibliographic details. The public site includes the application/publication metadata and links to public records.

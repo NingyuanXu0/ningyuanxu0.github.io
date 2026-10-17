@@ -10,17 +10,42 @@
   "primary_email": "nyxu.work@gmail.com",
   "secondary_email": "nyxu.work@outlook.com",
   "profiles": [
-    {"name": "Google Scholar", "short": "GS", "url": "https://scholar.google.com.hk/citations?user=4yB6phkAAAAJ&hl=en", "detail": "Publications & citations"},
-    {"name": "ORCID", "short": "iD", "url": "https://orcid.org/0009-0001-2545-4370", "detail": "0009-0001-2545-4370"},
-    {"name": "ResearchGate", "short": "RG", "url": "https://www.researchgate.net/profile/Xu-Ningyuan?ev=hdr_xprf", "detail": "Research profile"},
-    {"name": "GitHub", "short": "GH", "url": "https://github.com/NingyuanXu0", "detail": "Code & projects"}
+    {
+      "name": "Google Scholar",
+      "short": "GS",
+      "url": "https://scholar.google.com.hk/citations?user=4yB6phkAAAAJ&hl=en",
+      "detail": "Publications & citations"
+    },
+    {
+      "name": "ORCID",
+      "short": "iD",
+      "url": "https://orcid.org/0009-0001-2545-4370",
+      "detail": "0009-0001-2545-4370"
+    },
+    {
+      "name": "ResearchGate",
+      "short": "RG",
+      "url": "https://www.researchgate.net/profile/Xu-Ningyuan?ev=hdr_xprf",
+      "detail": "Research profile"
+    },
+    {
+      "name": "GitHub",
+      "short": "GH",
+      "url": "https://github.com/NingyuanXu0",
+      "detail": "Code & projects"
+    }
   ],
-  "intro": "I study how surface structure, chemistry and particle interactions influence wetting and colloidal organisation. My work connects experimental surface engineering with computational approaches to soft matter.",
+  "intro": "I study wetting, functional surfaces and colloidal self-assembly. At NTU, I use Monte Carlo simulations to investigate how particle shape and depletion interactions influence chiral selection and self-sorting.",
   "about": [
     "I am an M.Sc. student in Chemical Modelling at Nanyang Technological University (NTU), Singapore, supervised by Assoc. Prof. Ran Ni. My current research focuses on Monte Carlo modelling of depletion-driven colloidal assembly, including how deviations in particle shape influence chiral selection and self-sorting.",
     "Previously, I worked as an undergraduate research assistant at the Center for Materials Surface Science, UESTC, under Professors Dehui Wang and Xu Deng. There, I investigated durable superhydrophobic coatings and droplet–surface interactions. I hold B.Eng. degrees from UESTC and the University of Glasgow."
   ],
-  "interests": ["Wetting & interfacial transport", "Functional surface coatings", "Particle geometry & self-assembly", "Monte Carlo simulation"],
+  "interests": [
+    "Wetting & interfacial transport",
+    "Functional surface coatings",
+    "Particle geometry & self-assembly",
+    "Monte Carlo simulation"
+  ],
   "research": [
     {
       "id": "assembly",
@@ -30,8 +55,15 @@
       "status": "Current research · NTU",
       "image": "assets/images/assembly.svg",
       "alt": "Conceptual line drawing of differently oriented polyhedral colloids and smaller depletant particles.",
-      "tags": ["C++", "NVT / NPT", "Implicit depletion"],
-      "details": "I am developing a modular C++ Monte Carlo framework for hard particles and implicit ideal depletants. The work combines accelerated overlap detection, checkpoint/restart and literature benchmarks, and compares pairwise and many-body descriptions of depletion."
+      "tags": [
+        "C++",
+        "NVT / NPT",
+        "Implicit depletion"
+      ],
+      "details": "I am developing a modular C++ Monte Carlo framework for hard particles and implicit ideal depletants. The work combines accelerated overlap detection, checkpoint/restart and literature benchmarks, and compares pairwise and many-body descriptions of depletion.",
+      "show_on_homepage": true,
+      "homepage_title": "Colloidal assembly & particle shape",
+      "homepage_description": "Monte Carlo modelling of hard particles and depletion interactions, with a focus on chiral selection and self-sorting."
     },
     {
       "id": "surfaces",
@@ -41,8 +73,15 @@
       "status": "Research at UESTC · 2023–2026",
       "image": "assets/images/wetting.svg",
       "alt": "Conceptual drawing of a water droplet resting above a textured surface containing hollow microspheres.",
-      "tags": ["Surface chemistry", "Hierarchical coatings", "Wet radomes"],
-      "details": "My work at UESTC included formulation screening, silica surface functionalisation, spray deposition, dynamic wetting measurements, abrasion and environmental ageing tests. One project uses silica nanoparticles and hollow glass microspheres to combine water shedding with a low-loss coating architecture for radomes."
+      "tags": [
+        "Surface chemistry",
+        "Hierarchical coatings",
+        "Wet radomes"
+      ],
+      "details": "My work at UESTC included formulation screening, silica surface functionalisation, spray deposition, dynamic wetting measurements, abrasion and environmental ageing tests. One project uses silica nanoparticles and hollow glass microspheres to combine water shedding with a low-loss coating architecture for radomes.",
+      "show_on_homepage": true,
+      "homepage_title": "Wetting & functional surfaces",
+      "homepage_description": "Durable, waterborne superhydrophobic coatings and droplet–surface interactions, studied through surface characterisation, wetting measurements and high-speed imaging."
     },
     {
       "id": "droplets",
@@ -52,16 +91,27 @@
       "status": "Experimental research · UESTC",
       "image": "assets/images/droplets.svg",
       "alt": "Conceptual sequence of a droplet approaching a porous mesh, with three illustrative droplet shapes.",
-      "tags": ["High-speed imaging", "10,000 fps", "Porous meshes"],
+      "tags": [
+        "High-speed imaging",
+        "10,000 fps",
+        "Porous meshes"
+      ],
       "details": "I assisted droplet-impact testing and 10,000-fps video production for a superhydrophilic–Janus bilayer window screen, and co-analysed penetration data. This work was published in Small in 2025.",
-      "link": "https://doi.org/10.1002/smll.202409870"
+      "link": "https://doi.org/10.1002/smll.202409870",
+      "show_on_homepage": false
     }
   ],
   "publications": [
     {
       "id": "xu2026superhydrophobic",
       "title": "Superhydrophobic surfaces engineering for electrical systems applications",
-      "authors": ["Ningyuan Xu", "Haoze Yuan", "Huijuan Shao", "Tao Zhou", "Dehui Wang"],
+      "authors": [
+        "Ningyuan Xu",
+        "Haoze Yuan",
+        "Huijuan Shao",
+        "Tao Zhou",
+        "Dehui Wang"
+      ],
       "year": 2026,
       "journal": "Advances in Colloid and Interface Science",
       "volume": "358",
@@ -75,9 +125,48 @@
     {
       "id": "song2025breathable",
       "title": "Breathable Window Screen Against High-velocity Droplet Penetration",
-      "authors": ["Song, J.", "Luo, Y.", "Yang, J.", "Li, Y.", "Qi, H.", "Xu, Ningyuan", "Shao, H.", "Zhang, Y.", "Zhou, Y.", "Luo, Z.", "Wang, D.", "Deng, X."],
-      "display_authors": ["Song, J.", "Luo, Y.", "Yang, J.", "Li, Y.", "Qi, H.", "Xu, N.", "Shao, H.", "Zhang, Y.", "Zhou, Y.", "Luo, Z.", "Wang, D.", "Deng, X."],
-      "bib_authors": ["Song, J.", "Luo, Y.", "Yang, J.", "Li, Y.", "Qi, H.", "Xu, Ningyuan", "Shao, H.", "Zhang, Y.", "Zhou, Y.", "Luo, Z.", "Wang, D.", "Deng, X."],
+      "authors": [
+        "Song, J.",
+        "Luo, Y.",
+        "Yang, J.",
+        "Li, Y.",
+        "Qi, H.",
+        "Xu, Ningyuan",
+        "Shao, H.",
+        "Zhang, Y.",
+        "Zhou, Y.",
+        "Luo, Z.",
+        "Wang, D.",
+        "Deng, X."
+      ],
+      "display_authors": [
+        "Song, J.",
+        "Luo, Y.",
+        "Yang, J.",
+        "Li, Y.",
+        "Qi, H.",
+        "Xu, N.",
+        "Shao, H.",
+        "Zhang, Y.",
+        "Zhou, Y.",
+        "Luo, Z.",
+        "Wang, D.",
+        "Deng, X."
+      ],
+      "bib_authors": [
+        "Song, J.",
+        "Luo, Y.",
+        "Yang, J.",
+        "Li, Y.",
+        "Qi, H.",
+        "Xu, Ningyuan",
+        "Shao, H.",
+        "Zhang, Y.",
+        "Zhou, Y.",
+        "Luo, Z.",
+        "Wang, D.",
+        "Deng, X."
+      ],
       "year": 2025,
       "journal": "Small",
       "volume": "21",
@@ -91,7 +180,17 @@
     {
       "id": "shao2025adaptive",
       "title": "Adaptive Surfaces with Stimuli-Responsive Wettability: From Tailoring to Applications",
-      "authors": ["Huijuan Shao", "Kun Yin", "Ningyuan Xu", "Yiming Zhang", "Zhenxu Shi", "Yan Zhou", "Zhenbing Luo", "Dehui Wang", "Xu Deng"],
+      "authors": [
+        "Huijuan Shao",
+        "Kun Yin",
+        "Ningyuan Xu",
+        "Yiming Zhang",
+        "Zhenxu Shi",
+        "Yan Zhou",
+        "Zhenbing Luo",
+        "Dehui Wang",
+        "Xu Deng"
+      ],
       "year": 2025,
       "journal": "ACS Nano",
       "volume": "19",
@@ -104,29 +203,206 @@
     }
   ],
   "education": [
-    {"school": "Nanyang Technological University", "place": "Singapore", "degree": "M.Sc. in Chemical Modelling", "dates": "Aug. 2026 – May 2027 (expected)", "note": "Supervisor: Assoc. Prof. Ran Ni"},
-    {"school": "University of Electronic Science and Technology of China", "place": "China", "degree": "B.Eng. in Communication Engineering", "dates": "Aug. 2022 – Jun. 2026", "note": "Honours Research Certificate · Supervisors: Prof. Dehui Wang and Prof. Xu Deng"},
-    {"school": "University of Glasgow", "place": "United Kingdom", "degree": "B.Eng. (Hons) in Electronics and Electrical Engineering with Communications Engineering", "dates": "Aug. 2022 – Jun. 2026", "note": "Joint undergraduate programme with UESTC"}
+    {
+      "school": "Nanyang Technological University",
+      "place": "Singapore",
+      "degree": "M.Sc. in Chemical Modelling",
+      "dates": "Aug. 2026 – May 2027 (expected)",
+      "note": "",
+      "supervisor_ids": [
+        "ran-ni"
+      ]
+    },
+    {
+      "school": "University of Electronic Science and Technology of China",
+      "place": "China",
+      "degree": "B.Eng. in Communication Engineering",
+      "dates": "Aug. 2022 – Jun. 2026",
+      "note": "Honours Research Certificate",
+      "supervisor_ids": [
+        "dehui-wang",
+        "xu-deng"
+      ]
+    },
+    {
+      "school": "University of Glasgow",
+      "place": "United Kingdom",
+      "degree": "B.Eng. (Hons) in Electronics and Electrical Engineering with Communications Engineering",
+      "dates": "Aug. 2022 – Jun. 2026",
+      "note": "Joint undergraduate programme with UESTC",
+      "supervisor_ids": []
+    }
   ],
   "appointments": [
-    {"title": "M.Sc. Research Assistant", "organisation": "Computational Soft Matter Group, NTU", "dates": "Aug. 2026 – Present", "note": "Monte Carlo modelling of depletion-driven colloidal assembly · Supervisor: Assoc. Prof. Ran Ni"},
-    {"title": "Undergraduate Research Assistant", "organisation": "Center for Materials Surface Science, UESTC", "dates": "Sep. 2023 – Jul. 2026", "note": "Surface engineering and droplet experiments · Supervisors: Prof. Dehui Wang and Prof. Xu Deng"},
-    {"title": "Teaching Assistant", "organisation": "Team Design Project and Skills, UESTC", "dates": "Jan. 2026 – Jun. 2026", "note": "Project planning, design reviews, troubleshooting and course coordination"}
+    {
+      "title": "M.Sc. Research Assistant",
+      "organisation": "Computational Soft Matter Group, NTU",
+      "dates": "Aug. 2026 – Present",
+      "note": "Monte Carlo modelling of depletion-driven colloidal assembly",
+      "show_on_homepage": true
+    },
+    {
+      "title": "Undergraduate Research Assistant",
+      "organisation": "Center for Materials Surface Science, UESTC",
+      "dates": "Sep. 2023 – Jul. 2026",
+      "note": "Surface engineering and droplet experiments",
+      "show_on_homepage": true
+    },
+    {
+      "title": "Teaching Assistant",
+      "organisation": "Team Design Project and Skills, UESTC",
+      "dates": "Jan. 2026 – Jun. 2026",
+      "note": "Project planning, design reviews, troubleshooting and course coordination",
+      "show_on_homepage": false
+    }
   ],
   "honours": [
-    {"year": "2026", "title": "Top Ten Student Innovators in Science and Technology", "detail": "Glasgow College, UESTC"},
-    {"year": "2025", "title": "Silver Award · China International College Students’ Innovation Competition", "detail": "Project leader"},
-    {"year": "2024", "title": "James Watt Innovation First-Class Scholarship", "detail": "Top 1%"},
-    {"year": "2023 / 2025", "title": "Outstanding Innovation Scholarship", "detail": "Top 5% · two-time recipient"}
+    {
+      "year": "2026",
+      "title": "Top Ten Student Innovators in Science and Technology",
+      "detail": "Glasgow College, UESTC"
+    },
+    {
+      "year": "2025",
+      "title": "Silver Award · China International College Students’ Innovation Competition",
+      "detail": "Project leader"
+    },
+    {
+      "year": "2024",
+      "title": "James Watt Innovation First-Class Scholarship",
+      "detail": "Top 1%"
+    },
+    {
+      "year": "2023 / 2025",
+      "title": "Outstanding Innovation Scholarship",
+      "detail": "Top 5% · two-time recipient"
+    }
   ],
   "skills": [
-    {"label": "Materials", "text": "Hierarchical particle coatings, spray deposition, binder/filler screening, abrasion and ageing tests"},
-    {"label": "Characterisation", "text": "SEM/EDS, TEM/STEM-EDS, XPS, ATR-FTIR, optical microscopy and high-speed imaging"},
-    {"label": "Computing", "text": "C++, Python, MATLAB, C, Monte Carlo simulation, Linux/HPC, Git and LaTeX"}
+    {
+      "label": "Materials",
+      "text": "Hierarchical particle coatings, spray deposition, binder/filler screening, abrasion and ageing tests"
+    },
+    {
+      "label": "Characterisation",
+      "text": "SEM/EDS, TEM/STEM-EDS, XPS, ATR-FTIR, optical microscopy and high-speed imaging"
+    },
+    {
+      "label": "Computing",
+      "text": "C++, Python, MATLAB, C, Monte Carlo simulation, Linux/HPC, Git and LaTeX"
+    }
   ],
   "academic_emails": [
-    {"school": "UESTC", "period": "2022–2026", "addresses": ["2022190906016@std.uestc.edu.cn", "nyxu@std.uestc.edu.cn"]},
-    {"school": "University of Glasgow", "period": "2022–2026 · joint programme", "addresses": ["2840141x@student.gla.ac.uk"]},
-    {"school": "Nanyang Technological University", "period": "2026–present", "addresses": ["NINGYUAN004@e.ntu.edu.sg"]}
+    {
+      "school": "UESTC",
+      "period": "2022–2026",
+      "addresses": [
+        "2022190906016@std.uestc.edu.cn",
+        "nyxu@std.uestc.edu.cn"
+      ]
+    },
+    {
+      "school": "University of Glasgow",
+      "period": "2022–2026 · joint programme",
+      "addresses": [
+        "2840141x@student.gla.ac.uk"
+      ]
+    },
+    {
+      "school": "Nanyang Technological University",
+      "period": "2026–present",
+      "addresses": [
+        "NINGYUAN004@e.ntu.edu.sg"
+      ]
+    }
+  ],
+  "supervisors": [
+    {
+      "id": "ran-ni",
+      "name": "Ran Ni",
+      "title": "Assoc. Prof.",
+      "role": "M.Sc. supervisor",
+      "affiliation": "NTU",
+      "email": "r.ni@ntu.edu.sg",
+      "group_url": "https://www3.ntu.edu.sg/home/r.ni/",
+      "scholar_url": "https://scholar.google.com/citations?user=BGIQc1IAAAAJ&hl=en"
+    },
+    {
+      "id": "dehui-wang",
+      "name": "Dehui Wang",
+      "title": "Prof.",
+      "role": "Undergraduate supervisor",
+      "affiliation": "UESTC",
+      "email": "wangdehui@uestc.edu.cn",
+      "group_url": "https://www.x-mol.com/groups/dengxu?lang=en",
+      "scholar_url": "https://scholar.google.com/citations?user=SnQ4zFAAAAAJ&hl=en"
+    },
+    {
+      "id": "xu-deng",
+      "name": "Xu Deng",
+      "title": "Prof.",
+      "role": "Undergraduate supervisor",
+      "affiliation": "UESTC",
+      "email": "dengxu@uestc.edu.cn",
+      "group_url": "https://www.x-mol.com/groups/dengxu?lang=en",
+      "scholar_url": "https://scholar.google.com/citations?user=Z3RzWoQAAAAJ&hl=en"
+    }
+  ],
+  "patents": [
+    {
+      "id": "xu2026purification",
+      "title": "A Dialysate-Free Blood Purification Device Driven by a Liquid–Gas Phase Transition",
+      "inventors": [
+        "Xu, N.",
+        "Shao, T.",
+        "Jiang, X."
+      ],
+      "application_number": "202610812573.7",
+      "year": 2026,
+      "status": "Application accepted",
+      "filing_date": "2026-06-07",
+      "publication_number": "",
+      "publication_date": "",
+      "url": "",
+      "first_inventor": true,
+      "title_zh": "一种液-气相变驱动的无透析液血液净化器"
+    },
+    {
+      "id": "xu2025coating",
+      "title": "A Superamphiphobic High-Reflectivity Coating and Its Preparation Method",
+      "title_zh": "一种超双疏高反射涂料及制备方法",
+      "inventors": [
+        "Xu, N.",
+        "Yang, J."
+      ],
+      "application_number": "202510541383.1",
+      "year": 2025,
+      "status": "Published application",
+      "filing_date": "2025-04-28",
+      "publication_number": "CN120248697A",
+      "publication_date": "2025-07-04",
+      "url": "https://patents.google.com/patent/CN120248697A/en",
+      "first_inventor": true
+    },
+    {
+      "id": "xu2024mirrors",
+      "title": "A Method for Preventing Rainwater on Streaming Media Rearview Mirrors",
+      "title_zh": "一种用于流媒体后视镜防雨水的方法",
+      "inventors": [
+        "Xu, N.",
+        "Shao, H.",
+        "Song, J.",
+        "Wang, D.",
+        "Deng, X."
+      ],
+      "application_number": "202410272423.2",
+      "year": 2024,
+      "status": "Published application",
+      "filing_date": "2024-03-11",
+      "publication_number": "CN118455041A",
+      "publication_date": "2024-08-09",
+      "url": "https://patents.google.com/patent/CN118455041A/en",
+      "first_inventor": true
+    }
   ]
 }

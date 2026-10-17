@@ -56,6 +56,7 @@ class Page(HTMLParser):
             self.in_json, self.json_buffer = True, ""
 
     def handle_data(self, data):
+        self.labels.append(data)
         if self.in_json:
             self.json_buffer += data
 
@@ -69,6 +70,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("directory", type=Path, nargs="?", default=ROOT)
     base = parser.parse_args().directory.resolve()
+    profile = json.loads((ROOT / "data/profile.json").read_text(encoding="utf-8"))
     pages, errors = {}, []
     for filename in ("index.html", "cv.html", "404.html"):
         page = Page()
@@ -99,8 +101,21 @@ def main():
                 errors.append(f"{filename}: missing anchor {link}")
     home = pages["index.html"]
     emails = {x.removeprefix("mailto:") for x in home.links if x.startswith("mailto:")}
-    if emails != REQUIRED_EMAILS:
-        errors.append(f"Homepage contact mismatch: missing={REQUIRED_EMAILS-emails}, extra={emails-REQUIRED_EMAILS}")
+    expected_emails = REQUIRED_EMAILS | {person["email"] for person in profile["supervisors"]}
+    if emails != expected_emails:
+        errors.append(f"Homepage contact mismatch: missing={expected_emails-emails}, extra={emails-expected_emails}")
+    for page_name in ("index.html", "cv.html"):
+        page = pages[page_name]
+        text = " ".join(page.labels)
+        for person in profile["supervisors"]:
+            for link in (person["group_url"], person["scholar_url"], "mailto:" + person["email"]):
+                if link not in page.links:
+                    errors.append(f"{page_name}: missing supervisor link {link}")
+        for patent in profile["patents"]:
+            if patent["id"] not in page.ids or patent["application_number"] not in text:
+                errors.append(f"{page_name}: missing patent application {patent['application_number']}")
+            if patent["publication_number"] and (patent["publication_number"] not in text or patent["url"] not in page.links):
+                errors.append(f"{page_name}: missing public patent record {patent['publication_number']}")
     for profile in REQUIRED_PROFILES:
         if not any(profile in link for link in home.links):
             errors.append("Missing requested academic profile: " + profile)
@@ -123,7 +138,7 @@ def main():
         errors.append("Missing .nojekyll")
     if errors:
         raise SystemExit("\n".join(errors))
-    print(f"PASS: {len(pages)} HTML pages, all local assets/anchors, 6 email addresses, 4 requested profiles, 3 BibTeX entries, JSON-LD and XML.")
+    print(f"PASS: {len(pages)} HTML pages, all local assets/anchors, 6 owner email addresses, 3 supervisors with group/Scholar/email links, 3 patent applications, 4 profiles, 3 BibTeX entries, JSON-LD and XML.")
     print("External profile destinations are supplied links; availability or login requirements remain controlled by those services.")
 
 

@@ -51,19 +51,6 @@
     }
   });
 
-  const filterButtons = document.querySelectorAll('[data-filter]');
-  const papers = document.querySelectorAll('.publication');
-  filterButtons.forEach((button) => button.addEventListener('click', () => {
-    const filter = button.dataset.filter;
-    filterButtons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
-    let visible = 0;
-    papers.forEach((paper) => {
-      paper.hidden = filter !== 'all' && paper.dataset.type !== filter;
-      if (!paper.hidden) visible++;
-    });
-    announce(`${visible} publication${visible === 1 ? '' : 's'} shown.`);
-  }));
-
   document.querySelectorAll('[data-copy-target], [data-copy-text]').forEach((button) => {
     button.addEventListener('click', async () => {
       const value = button.dataset.copyText || document.getElementById(button.dataset.copyTarget)?.textContent;

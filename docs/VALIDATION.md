@@ -1,23 +1,32 @@
 # Release validation
 
-Prepared on 17 October 2026.
+Updated on 17 October 2026 for the readability, supervisor and patent revision.
 
-## Checked
+## Source checks
 
-- Python source compilation and generation of `index.html`, `cv.html`, bibliography and metadata.
-- JavaScript syntax with `node --check assets/js/main.js`.
-- Three generated HTML documents, a unique primary heading in each, duplicate IDs, image alt text and dimensions.
-- Local image, stylesheet, script and file destinations, plus internal section anchors.
-- All six email addresses exactly as supplied, including the case of the NTU address.
-- All four requested academic/social destinations in the homepage.
-- Three published papers with DOI links and three BibTeX records.
-- JSON-LD parseability, sitemap XML, SVG XML and social image presence.
-- A clean deploy-only output can be generated with the included builder and checked independently.
+- Generated homepage, CV, bibliography, sitemap and 404 page with the standard-library Python builder.
+- Checked local assets, internal anchors, duplicate IDs, headings, JSON-LD, sitemap XML and SVG XML.
+- Checked all six owner email addresses and four academic/social profiles.
+- Checked three supervisors' email, group and Google Scholar destinations in both the homepage and CV.
+- Checked all three patent application entries and both public patent records in the homepage and CV.
+- Checked the three published-paper BibTeX records.
+- JavaScript syntax and whitespace checks are run before publishing.
 
-## Verification limits
+## Browser checks
 
-Browser rendering and interactive behaviour were not exercised in this execution environment because the supported browser QA capability was unavailable. Responsive layout and accessibility features are implemented in the source; the static checks do not establish a rendered browser result.
+- Inspected desktop rendering at 1280px and phone rendering at 390px, including the dark theme.
+- Checked 320, 390, 768, 1024 and 1280px widths without horizontal overflow.
+- Confirmed 18px Arial body text on desktop, 17px on phones, 16px navigation and author text, and 15px research metadata.
+- Exercised mobile menu opening and closing, theme switching and BibTeX expansion; the browser reported successful citation copying.
+- Checked supervisor cards, patent records and the expandable academic email list.
+- Checked the CV in desktop and phone layouts before release.
 
-GitHub repository creation, a GitHub Pages deployment and a successful public HTTP response have not been verified by this source-package validation. The target URL is not evidence of an active deployment.
+## Content verification
 
-Profile URLs were preserved from the owner's request. Google Scholar, ResearchGate, ORCID and publisher sites may impose their own login or access controls; the static checks do not assert that every external page can be fetched anonymously. Email links do not establish mailbox deliverability.
+Supervisor contact information was checked against NTU, X-MOL and UESTC faculty pages. Patent details were checked against the owner's two CNIPA application publications and the CNIPA acceptance notice. The high-reflectivity coating application number and co-inventor were corrected from the older CV to match the official publication.
+
+Public record links identify published patent applications. External profile services control their own availability and login requirements. Email links provide contact destinations; mailbox delivery is outside these checks.
+
+## Publishing
+
+GitHub Pages serves the repository's main branch root over HTTPS. The deployment workflow and the live generated files are verified against the release commit when this revision is published.
