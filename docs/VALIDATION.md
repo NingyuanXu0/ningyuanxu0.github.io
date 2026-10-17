@@ -41,3 +41,5 @@ Public record links identify published patent applications. External profile ser
 ## Publishing
 
 GitHub Pages serves the repository's main branch root over HTTPS. The deployment workflow and the live generated files are verified against the release commit when this revision is published.
+
+Preserved the owner's concurrent `CNAME` addition for `ningyuanxu.com`, synchronized canonical/social/sitemap URLs and the 404 return link, and verified the custom domain's TLS certificate. Public DNS returns GitHub Pages addresses; a local negative DNS cache temporarily required origin requests with the custom-domain Host header for release verification.

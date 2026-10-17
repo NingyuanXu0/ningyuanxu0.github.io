@@ -1,6 +1,6 @@
 # 个人学术主页：发布与维护
 
-正式网址：**https://ningyuanxu0.github.io/**。
+正式网址：**https://ningyuanxu.com/**。
 
 GitHub 仓库：https://github.com/NingyuanXu0/ningyuanxu0.github.io 。
 
@@ -47,7 +47,7 @@ python3 scripts/check.py
 
 ## GitHub Pages 设置
 
-当前发布设置为 **Settings → Pages → Deploy from a branch → main → /(root)**，已启用 HTTPS。
+当前发布设置为 **Settings → Pages → Deploy from a branch → main → /(root)**。`CNAME` 保留自定义域名 `ningyuanxu.com`，该域名的 HTTPS 证书已通过检查；`data/profile.json` 中的 `site_url` 与自定义域名保持一致。
 
 `index.html` 位于仓库根目录，`.nojekyll` 已包含在源码中。可在仓库 Actions 中查看 `pages build and deployment` 的结果。
 

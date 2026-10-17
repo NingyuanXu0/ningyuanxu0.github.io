@@ -56,7 +56,7 @@ def draw():
     for x,y in [(296,331),(313,340),(365,294),(206,305),(255,348)]:
         body+=dot(x,y,2.2)
     (OUT/'interface.svg').write_text(svg(body,420,375), encoding='utf-8')
-    social=f'''<rect width="1200" height="630" fill="#f8fafc"/><path d="M65 70h1070" stroke="#d4dfeb"/><text x="70" y="117" fill="{BLUE}" font-family="Arial,sans-serif" font-size="17" letter-spacing="3">RESEARCH / NANYANG TECHNOLOGICAL UNIVERSITY</text><text x="66" y="290" fill="#213047" font-family="Georgia,serif" font-size="100">Ningyuan Xu</text><text x="70" y="356" fill="{BLUE}" font-family="Georgia,serif" font-size="34">Surface science &amp;</text><text x="70" y="405" fill="{BLUE}" font-family="Georgia,serif" font-size="34">computational soft matter</text><text x="70" y="550" fill="#4b5c72" font-family="Arial,sans-serif" font-size="22">ningyuanxu0.github.io</text><g transform="translate(724 122) scale(.98)">{body}</g>'''
+    social=f'''<rect width="1200" height="630" fill="#f8fafc"/><path d="M65 70h1070" stroke="#d4dfeb"/><text x="70" y="117" fill="{BLUE}" font-family="Arial,sans-serif" font-size="17" letter-spacing="3">RESEARCH / NANYANG TECHNOLOGICAL UNIVERSITY</text><text x="66" y="290" fill="#213047" font-family="Georgia,serif" font-size="100">Ningyuan Xu</text><text x="70" y="356" fill="{BLUE}" font-family="Georgia,serif" font-size="34">Surface science &amp;</text><text x="70" y="405" fill="{BLUE}" font-family="Georgia,serif" font-size="34">computational soft matter</text><text x="70" y="550" fill="#4b5c72" font-family="Arial,sans-serif" font-size="22">ningyuanxu.com</text><g transform="translate(724 122) scale(.98)">{body}</g>'''
     (OUT/'social-card.svg').write_text(svg(social,1200,630), encoding='utf-8')
     try:
         import cairosvg

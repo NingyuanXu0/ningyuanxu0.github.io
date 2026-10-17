@@ -2,7 +2,7 @@
 
 A static academic homepage for Ningyuan Xu, M.Sc. student in Chemical Modelling at Nanyang Technological University, Singapore.
 
-**Live website:** https://ningyuanxu0.github.io/
+**Live website:** https://ningyuanxu.com/
 
 中文维护说明见 [START_HERE_zh.md](START_HERE_zh.md)。
 
