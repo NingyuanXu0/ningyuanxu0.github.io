@@ -6,10 +6,16 @@ import json
 import re
 import shutil
 from datetime import date
+from hashlib import sha256
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 E = lambda value: html.escape(str(value), quote=True)
+
+
+def asset_url(path):
+    version = sha256((ROOT / path).read_bytes()).hexdigest()[:12]
+    return f"{path}?v={version}"
 
 
 def external(url, label, css="", extra=""):
@@ -72,19 +78,19 @@ def make_head(p, title=None, path="/", description=None):
   <meta name="theme-color" content="#245c9e">
   <meta name="color-scheme" content="light dark">
   <link rel="canonical" href="{E(canonical)}">
-  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="{asset_url('assets/images/favicon.svg')}" type="image/svg+xml">
+  <link rel="stylesheet" href="{asset_url('assets/css/style.css')}">
   <meta property="og:type" content="website">
   <meta property="og:title" content="{E(title)}">
   <meta property="og:description" content="{E(desc)}">
   <meta property="og:url" content="{E(canonical)}">
-  <meta property="og:image" content="{E(p['site_url'])}/assets/images/social-card.png">
+  <meta property="og:image" content="{E(p['site_url'] + '/' + asset_url('assets/images/social-card.png'))}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Ningyuan Xu — Surface science and computational soft matter">
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">{json.dumps(person, ensure_ascii=False).replace('<', chr(92) + 'u003c')}</script>
-  <script src="assets/js/main.js" defer></script>
+  <script src="{asset_url('assets/js/main.js')}" defer></script>
 </head>'''
 
 

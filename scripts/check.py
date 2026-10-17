@@ -83,7 +83,8 @@ def main():
         if page.h1s != 1:
             errors.append(f"{filename}: expected exactly one h1")
         for asset in page.assets:
-            if not urlsplit(asset).scheme and not (base / unquote(asset)).is_file():
+            asset_url = urlsplit(asset)
+            if not asset_url.scheme and not (base / unquote(asset_url.path)).is_file():
                 errors.append(f"{filename}: missing asset {asset}")
     for filename, page in pages.items():
         for link in page.links:
