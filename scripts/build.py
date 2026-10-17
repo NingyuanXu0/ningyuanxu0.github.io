@@ -142,15 +142,18 @@ def make_patents(p):
 
 
 def make_home(p):
+    guestbook = p["guestbook"]
+    guestbook_url = f'https://github.com/{guestbook["repository"]}/issues'
     profile_links = "".join(external(x["url"], E(x["name"]) + ' ↗') for x in p["profiles"])
     research = ""
     for item in p["research"]:
         if not item.get("show_on_homepage", True):
             continue
+        experience = f'\n          <p>{E(item["homepage_experience"])}</p>' if item.get("homepage_experience") else ""
         research += f'''<article class="research-card" id="research-{E(item['id'])}">
           <p class="research-context">{E(item['status'])}</p>
           <h3>{E(item.get('homepage_title', item['title']))}</h3>
-          <p>{E(item.get('homepage_description', item['description']))}</p>
+          <p>{E(item.get('homepage_description', item['description']))}</p>{experience}
         </article>'''
     papers = ""
     for item in p["publications"]:
@@ -220,12 +223,21 @@ def make_home(p):
     <section id="contact" class="section contact" aria-labelledby="contact-heading">
       {section_head('<span id="contact-heading">Contact</span>')}
       <div class="contact-panel">
-        <div class="personal-emails"><a class="primary-email" href="mailto:{E(p['primary_email'])}">{E(p['primary_email'])}</a><a href="mailto:{E(p['secondary_email'])}">{E(p['secondary_email'])}</a></div>
+        <div class="personal-emails"><a href="mailto:{E(p['primary_email'])}">{E(p['primary_email'])}</a><a href="mailto:{E(p['secondary_email'])}">{E(p['secondary_email'])}</a></div>
         <details class="academic-emails"><summary>Academic email addresses</summary><div class="academic-email-list">{emails}</div></details>
+      </div>
+      <div class="guestbook" data-repository="{E(guestbook['repository'])}" data-label="{E(guestbook['label'])}" aria-labelledby="guestbook-heading">
+        <div class="guestbook-heading"><h3 id="guestbook-heading">Guestbook</h3>{external(guestbook_url + '?q=is%3Aissue+is%3Aopen+label%3A' + guestbook['label'], 'View all messages ↗', 'text-link')}</div>
+        <p>Questions, research ideas and greetings are welcome. Messages are public; a GitHub account is required to post. For private enquiries, please email me.</p>
+        {external(guestbook_url + '/new?template=guestbook.yml', 'Leave a public message ↗', 'button guestbook-write')}
+        <p class="guestbook-status" role="status" aria-live="polite">Read the guestbook or leave a message on GitHub.</p>
+        <ol class="guestbook-messages" aria-label="Recent public messages"></ol>
+        <button type="button" class="guestbook-refresh" hidden>Refresh messages</button>
       </div>
     </section>
   </main>
   {footer(p)}
+  <script src="{asset_url('assets/js/guestbook.js')}" defer></script>
 </body></html>'''
 
 
@@ -266,6 +278,10 @@ def make_cv(p):
 
 
 def validate_profile(p):
+    if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", p["guestbook"]["repository"]):
+        raise ValueError("Invalid guestbook repository")
+    if not re.fullmatch(r"[A-Za-z0-9_-]+", p["guestbook"]["label"]):
+        raise ValueError("Invalid guestbook label")
     if len({x["id"] for x in p["publications"]}) != len(p["publications"]):
         raise ValueError("Publication IDs must be unique")
     for link in p["profiles"]:

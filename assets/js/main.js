@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   document.documentElement.classList.add('js-ready');
-  const message = document.querySelector('[role="status"]');
+  const message = document.querySelector('.live-message');
   let messageTimer;
   const announce = (text) => {
     if (!message) return;

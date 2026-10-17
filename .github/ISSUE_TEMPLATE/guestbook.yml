@@ -1,0 +1,18 @@
+name: Guestbook message
+description: Leave a public question, research idea or greeting for Ningyuan Xu.
+title: "[Guestbook] "
+labels: [guestbook]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Welcome to my academic guestbook. Your message and GitHub username will be public and may appear on my homepage.
+        For private enquiries, please email nyxu.work@gmail.com.
+  - type: textarea
+    id: message
+    attributes:
+      label: Message
+      description: Share your question, research idea or greeting.
+      placeholder: Write your message here.
+    validations:
+      required: true

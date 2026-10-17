@@ -28,10 +28,11 @@ GitHub 仓库：https://github.com/NingyuanXu0/ningyuanxu0.github.io 。
 | 教育及研究／教学经历 | `education`、`appointments` |
 | CV 中的技能和奖项 | `skills`、`honours` |
 | 个人及学术邮箱 | `primary_email`、`secondary_email`、`academic_emails` |
+| 公开留言区的仓库与标签 | `guestbook` |
 | 学术平台 | `profiles` |
 | 更新日期 | `updated`，格式为 `YYYY-MM-DD` |
 
-`research` 和 `appointments` 中的 `show_on_homepage` 决定条目是否显示在首页；完整内容仍会进入 CV。研究条目的 `homepage_title` 和 `homepage_description` 用于精简首页展示，`details` 用于完整 CV。
+`research` 和 `appointments` 中的 `show_on_homepage` 决定条目是否显示在首页；完整内容仍会进入 CV。研究条目的 `homepage_title` 和 `homepage_description` 用于首页展示，可通过 `homepage_experience` 增加实验经验段落，`details` 用于完整 CV。UESTC 条目目前按表面与界面物理化学的研究范围和实验能力组织。
 
 论文的 `authors` 数组须按正式署名顺序填写完整姓名。`author_position` 从 1 开始，生成脚本会核对这一位置是否为你的名字。`journal_metrics` 分别保存 JIF 数据年份与 JCR 发布年份，例如 2025 JIF 对应 2026 JCR；以后更新指标时请同时更新年份、分区和来源链接。
 
@@ -63,5 +64,9 @@ python3 scripts/check.py
 ## 联系方式和 CV
 
 首页保留 Gmail、Outlook 两个个人邮箱。原有四个教育邮箱位于 Contact → Academic email addresses，点击即可展开。
+
+两个个人邮箱采用相同字号：桌面端 22px，手机端 19px。
+
+Contact 下的 Guestbook 为公开留言区。访客可直接阅读最近五条留言，点击 **Leave a public message** 后登录 GitHub 填写留言，你可以在对应 Issue 中回复。发布表单会自动加上 `guestbook` 标签；关闭 Issue 或移除标签后，该留言不再显示在主页。所有留言及 GitHub 用户名均公开，私密咨询通过邮箱联系。代码中无需保存访问令牌。
 
 打开 `cv.html`，点击 **Print / Save as PDF** 可打印或保存 CV。深浅主题和手机菜单为可选增强功能，页面内容与普通链接均可在禁用 JavaScript 时使用。

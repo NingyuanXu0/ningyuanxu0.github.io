@@ -9,6 +9,10 @@
   "description": "Ningyuan Xu — M.Sc. student at Nanyang Technological University, working on surface science, wetting and depletion-driven colloidal assembly.",
   "primary_email": "nyxu.work@gmail.com",
   "secondary_email": "nyxu.work@outlook.com",
+  "guestbook": {
+    "repository": "NingyuanXu0/ningyuanxu0.github.io",
+    "label": "guestbook"
+  },
   "profiles": [
     {
       "name": "Google Scholar",
@@ -68,20 +72,21 @@
     {
       "id": "surfaces",
       "category": "SURFACE & INTERFACE ENGINEERING",
-      "title": "Durable surfaces for water shedding",
-      "description": "Designing sprayable, waterborne superhydrophobic coatings that combine hierarchical texture with practical durability.",
+      "title": "Surface & interface science",
+      "description": "The physical chemistry of surfaces and interfaces, including superhydrophobic coatings, droplet dynamics, condensation, icing and frost formation.",
       "status": "Research at UESTC · 2023–2026",
       "image": "assets/images/wetting.svg",
       "alt": "Conceptual drawing of a water droplet resting above a textured surface containing hollow microspheres.",
       "tags": [
         "Surface chemistry",
-        "Hierarchical coatings",
-        "Wet radomes"
+        "Functional coatings",
+        "Phase-change phenomena"
       ],
-      "details": "My work at UESTC included formulation screening, silica surface functionalisation, spray deposition, dynamic wetting measurements, abrasion and environmental ageing tests. One project uses silica nanoparticles and hollow glass microspheres to combine water shedding with a low-loss coating architecture for radomes.",
+      "details": "My research at UESTC focused on the physical chemistry of surfaces and interfaces, spanning superhydrophobic coatings, droplet dynamics and droplet–surface interactions, condensation, icing and frost formation. My experimental expertise includes particle synthesis and surface modification, coating formulation and fabrication, and scaling up coating production, supported by surface characterisation, wetting measurements and high-speed imaging.",
       "show_on_homepage": true,
-      "homepage_title": "Wetting & functional surfaces",
-      "homepage_description": "Durable, waterborne superhydrophobic coatings and droplet–surface interactions, studied through surface characterisation, wetting measurements and high-speed imaging."
+      "homepage_title": "Surface & interface science",
+      "homepage_description": "My research at UESTC focused on the physical chemistry of surfaces and interfaces, spanning superhydrophobic coatings, droplet dynamics and droplet–surface interactions, condensation, icing and frost formation.",
+      "homepage_experience": "My experimental expertise includes particle synthesis and surface modification, coating formulation and fabrication, and scaling up coating production, supported by surface characterisation, wetting measurements and high-speed imaging."
     },
     {
       "id": "droplets",
@@ -280,7 +285,7 @@
   "skills": [
     {
       "label": "Materials",
-      "text": "Hierarchical particle coatings, spray deposition, binder/filler screening, abrasion and ageing tests"
+      "text": "Particle synthesis and surface modification, coating formulation and fabrication, production scale-up, spray deposition, durability and ageing tests"
     },
     {
       "label": "Characterisation",

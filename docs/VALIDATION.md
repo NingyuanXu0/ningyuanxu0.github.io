@@ -1,6 +1,6 @@
 # Release validation
 
-Updated on 17 October 2026 for the readability, supervisor, patent, authorship, journal-metric and blue-theme revisions.
+Updated on 17 October 2026 for the readability, supervisor, patent, authorship, journal-metric, blue-theme, research and guestbook revisions.
 
 ## Source checks
 
@@ -16,6 +16,8 @@ Updated on 17 October 2026 for the readability, supervisor, patent, authorship, 
 - Versioned stylesheet, script, favicon and social-preview URLs by their file contents so existing visitors load updated assets after publication.
 - Checked light and dark text colours against the page, surface and label backgrounds: all normal-text combinations exceed the WCAG AA 4.5:1 contrast threshold (minimum 6.07:1).
 - JavaScript syntax and whitespace checks are run before publishing.
+- Expanded the UESTC research field and laboratory/production experience from the owner's supplied description; synchronized the homepage and CV.
+- Exercised guestbook empty results, plain-text handling of HTML-like content, issue filtering, refresh failure, network errors and lazy loading with local fixtures.
 
 ## Browser checks
 
@@ -26,6 +28,9 @@ Updated on 17 October 2026 for the readability, supervisor, patent, authorship, 
 - Checked supervisor cards, patent records and the expandable academic email list.
 - Checked the CV in desktop and phone layouts before release.
 - Rechecked the blue revision in desktop light/dark views and 390px homepage/CV views; no horizontal overflow.
+- Confirmed matching Contact email font sizes: 22px on desktop and 19px on phones.
+- Inspected the expanded research text and guestbook on desktop and at 390px; checked the 320px layout without horizontal overflow.
+- Read the real public guestbook endpoint and exercised message refresh. Tested rendering with local fixtures without posting artificial messages to GitHub.
 
 ## Content verification
 
