@@ -1,26 +1,26 @@
 /* Academic homepage: local fonts, readable type and a compact content hierarchy. */
 :root {
   color-scheme: light;
-  --paper: #fafaf7;
+  --paper: #f8fafc;
   --surface: #ffffff;
-  --ink: #23332e;
-  --muted: #4d5d55;
-  --accent: #196659;
-  --line: #d5ded6;
-  --soft: #eef3ed;
+  --ink: #213047;
+  --muted: #4b5c72;
+  --accent: #245c9e;
+  --line: #d4dfeb;
+  --soft: #edf3fa;
   --serif: Georgia, 'Times New Roman', serif;
   --sans: Arial, 'Helvetica Neue', Helvetica, sans-serif;
   --mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
 }
 [data-theme='dark'] {
   color-scheme: dark;
-  --paper: #172522;
-  --surface: #1c2d29;
-  --ink: #edf2e8;
-  --muted: #bdcbbf;
-  --accent: #a1d8b9;
-  --line: #40594d;
-  --soft: #243a30;
+  --paper: #121e30;
+  --surface: #18283e;
+  --ink: #e8eef7;
+  --muted: #b8c8dd;
+  --accent: #91bcf1;
+  --line: #3b506c;
+  --soft: #20344f;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 108px; }
@@ -41,7 +41,7 @@ p { margin: 0 0 1rem; }
 h1, h2, h3, h4 { line-height: 1.35; margin: 0; font-weight: 600; }
 img { max-width: 100%; display: block; }
 svg { flex-shrink: 0; }
-::selection { background: #c6ddcb; color: #17332a; }
+::selection { background: #cfe1fa; color: #173b68; }
 .wrap { width: min(1100px, calc(100% - 80px)); margin-inline: auto; }
 .skip { position: fixed; top: 8px; left: 8px; background: var(--surface); padding: 10px 16px; transform: translateY(-180%); z-index: 100; }
 .skip:focus { transform: none; }
@@ -202,7 +202,7 @@ svg { flex-shrink: 0; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
 @media print {
-  :root, [data-theme='dark'] { --paper: #fff; --surface: #fff; --ink: #111; --muted: #333; --accent: #174c3f; --line: #ccc; --soft: #f5f5f5; }
+  :root, [data-theme='dark'] { --paper: #fff; --surface: #fff; --ink: #111; --muted: #333; --accent: #1d4e89; --line: #ccc; --soft: #f5f5f5; }
   body { font-size: 11pt; background: #fff; }
   .wrap { width: 100%; max-width: none; }
   .site-header, .footer, .copy-button, .live-message, .cv-toolbar, .skip { display: none !important; }

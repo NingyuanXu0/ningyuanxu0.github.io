@@ -18,6 +18,7 @@ A static academic homepage for Ningyuan Xu, M.Sc. student in Chemical Modelling 
 - All six owner email addresses. Additional academic addresses are available in an expandable contact section.
 - DOI links, BibTeX display, copy and downloads; public records for the two published patent applications.
 - Responsive navigation, light/dark themes, keyboard focus styles and reduced-motion support.
+- An academic blue palette across links, author labels, the CV, favicon and social preview, with a navy dark theme.
 - Search/social metadata, sitemap, robots.txt, favicon and a custom 404 page.
 - Local fonts and static files; no third-party scripts, analytics, forms or runtime framework.
 

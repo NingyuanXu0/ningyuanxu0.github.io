@@ -69,7 +69,7 @@ def make_head(p, title=None, path="/", description=None):
   <title>{E(title)}</title>
   <meta name="description" content="{E(desc)}">
   <meta name="author" content="{E(p['name'])}">
-  <meta name="theme-color" content="#196659">
+  <meta name="theme-color" content="#245c9e">
   <meta name="color-scheme" content="light dark">
   <link rel="canonical" href="{E(canonical)}">
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
@@ -327,7 +327,7 @@ def main():
     (out / "robots.txt").write_text(f'User-agent: *\nAllow: /\nSitemap: {p["site_url"]}/sitemap.xml\n', encoding="utf-8")
     urls = "".join(f'<url><loc>{E(p["site_url"] + path)}</loc><lastmod>{p["updated"]}</lastmod></url>' for path in ("/", "/cv.html"))
     (out / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n', encoding="utf-8")
-    (out / "404.html").write_text('''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Page not found | Ningyuan Xu</title><style>body{background:#fafaf7;color:#1d302f;font:18px/1.7 Arial,Helvetica,sans-serif;margin:0;min-height:100vh;display:grid;place-items:center}main{max-width:480px;padding:35px}h1{font:52px Georgia,serif;margin:12px 0}small{font:14px Arial,Helvetica,sans-serif;color:#196659}a{color:#196659;text-underline-offset:5px}</style></head><body><main><small>404 / NINGYUAN XU</small><h1>Page not found.</h1><p>The page may have moved. You can find my research, publications and contact details on the homepage.</p><a href="https://ningyuanxu0.github.io/">Return to homepage →</a></main></body></html>''', encoding="utf-8")
+    (out / "404.html").write_text('''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Page not found | Ningyuan Xu</title><style>body{background:#f8fafc;color:#213047;font:18px/1.7 Arial,Helvetica,sans-serif;margin:0;min-height:100vh;display:grid;place-items:center}main{max-width:480px;padding:35px}h1{font:52px Georgia,serif;margin:12px 0}small{font:14px Arial,Helvetica,sans-serif;color:#245c9e}a{color:#245c9e;text-underline-offset:5px}</style></head><body><main><small>404 / NINGYUAN XU</small><h1>Page not found.</h1><p>The page may have moved. You can find my research, publications and contact details on the homepage.</p><a href="https://ningyuanxu0.github.io/">Return to homepage →</a></main></body></html>''', encoding="utf-8")
     print(f"Built homepage, CV, bibliography and metadata in {out}")
 
 
