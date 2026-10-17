@@ -1,5 +1,6 @@
 {
   "name": "Ningyuan Xu",
+  "native_name": "徐宁远",
   "site_url": "https://ningyuanxu.com",
   "updated": "2026-10-17",
   "location": "Singapore",
@@ -37,6 +38,12 @@
       "short": "GH",
       "url": "https://github.com/NingyuanXu0",
       "detail": "Code & projects"
+    },
+    {
+      "name": "LinkedIn",
+      "short": "in",
+      "url": "https://www.linkedin.com/in/ningyuan-xu-b059a7284/",
+      "detail": "Professional profile"
     }
   ],
   "intro": "I study wetting, functional surfaces and colloidal self-assembly. At NTU, I use Monte Carlo simulations to investigate how particle shape and depletion interactions influence chiral selection and self-sorting.",
@@ -49,6 +56,24 @@
     "Functional surface coatings",
     "Particle geometry & self-assembly",
     "Monte Carlo simulation"
+  ],
+  "hobbies": [
+    {
+      "name": "Music",
+      "description": "Post-rock, musical theatre, classical music and more."
+    },
+    {
+      "name": "Films",
+      "description": ""
+    },
+    {
+      "name": "Sports",
+      "description": "Hiking, cycling, swimming, table tennis, badminton, skateboarding, paragliding and more."
+    },
+    {
+      "name": "Travel",
+      "description": ""
+    }
   ],
   "research": [
     {

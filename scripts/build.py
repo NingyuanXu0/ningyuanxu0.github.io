@@ -63,7 +63,7 @@ def make_head(p, title=None, path="/", description=None):
     title = title or f'{p["name"]} | Surface Science & Soft Matter'
     desc = description or p["description"]
     canonical = p["site_url"].rstrip("/") + path
-    person = {"@context": "https://schema.org", "@type": "Person", "name": p["name"],
+    person = {"@context": "https://schema.org", "@type": "Person", "name": p["name"], "alternateName": p["native_name"],
               "url": p["site_url"] + "/", "jobTitle": p["role"],
               "affiliation": {"@type": "CollegeOrUniversity", "name": p["affiliation"]},
               "sameAs": [x["url"] for x in p["profiles"]], "knowsAbout": p["interests"]}
@@ -177,13 +177,14 @@ def make_home(p):
         education += f'''<li><time>{E(item['dates'])}</time><h4>{E(item['school'])}</h4><p class="degree">{E(item['degree'])}</p>{note}</li>'''
     experience = "".join(f'''<li><time>{E(x['dates'])}</time><h4>{E(x['title'])}</h4><p class="degree">{E(x['organisation'])}</p><p class="note">{E(x['note'])}</p></li>''' for x in p["appointments"] if x.get("show_on_homepage", True))
     emails = "".join(f'''<div class="academic-email"><h4>{E(x['school'])}</h4>{''.join(f'<a href="mailto:{E(a)}">{E(a)}</a>' for a in x['addresses'])}</div>''' for x in p["academic_emails"])
+    hobbies = "".join(f'<li><strong>{E(x["name"])}</strong>{": " + E(x["description"]) if x["description"] else ""}</li>' for x in p["hobbies"])
     return make_head(p) + f'''
 <body id="top">
   <a class="skip" href="#main">Skip to content</a>
   <header class="site-header"><div class="wrap header-inner">
     <a class="brand" href="#top" aria-label="Ningyuan Xu home">Ningyuan Xu</a>
     <nav class="site-nav" id="site-nav" aria-label="Main navigation">
-      <a href="#about">About</a><a href="#research">Research</a><a href="#publications">Publications</a><a href="#patents">Patents</a><a href="#background">Background</a><a href="#contact">Contact</a><a href="cv.html">CV ↗</a>
+      <a href="#about">About</a><a href="#research">Research</a><a href="#publications">Publications</a><a href="#patents">Patents</a><a href="#background">Background</a><a href="#hobbies">Interests</a><a href="#contact">Contact</a><a href="cv.html">CV ↗</a>
     </nav>
     <div class="header-controls">
       <button type="button" class="icon-button theme-toggle" aria-label="Switch to dark theme" aria-pressed="false" title="Dark theme"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20.5 14.5A9 9 0 0 1 9.5 3.5a9 9 0 1 0 11 11Z"/></svg></button>
@@ -192,12 +193,11 @@ def make_home(p):
   </div></header>
   <main id="main" class="wrap">
     <section id="about" class="hero" aria-labelledby="hero-title">
-      <p class="eyebrow">M.Sc. student · Nanyang Technological University, Singapore</p>
-      <h1 id="hero-title">{E(p['name'])}</h1>
+      <h1 id="hero-title"><span>{E(p['name'])}</span> <span class="native-name" lang="zh-Hans">（{E(p['native_name'])}）</span></h1>
       <p class="subtitle">{E(p['tagline'])}</p>
       <p class="hero-intro">{E(p['intro'])}</p>
       <div class="hero-links"><a href="mailto:{E(p['primary_email'])}">{E(p['primary_email'])}</a><a href="cv.html">Academic CV ↗</a></div>
-      <div class="profile-links" aria-label="Academic profiles">{profile_links}</div>
+      <div class="profile-links" aria-label="Academic and professional profiles">{profile_links}</div>
     </section>
     <section id="research" class="section" aria-labelledby="research-heading">
       {section_head('<span id="research-heading">Research</span>')}
@@ -219,6 +219,10 @@ def make_home(p):
         <div><h3 class="column-heading">Research appointments</h3><ol class="timeline">{experience}</ol></div>
       </div>
       <div class="supervisors" id="supervisors"><h3 class="column-heading">Supervisors</h3>{make_supervisors(p)}</div>
+    </section>
+    <section id="hobbies" class="section" aria-labelledby="hobbies-heading">
+      {section_head('<span id="hobbies-heading">Interests &amp; hobbies</span>')}
+      <ul class="hobby-list">{hobbies}</ul>
     </section>
     <section id="contact" class="section contact" aria-labelledby="contact-heading">
       {section_head('<span id="contact-heading">Contact</span>')}

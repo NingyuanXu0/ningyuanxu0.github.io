@@ -17,6 +17,7 @@ REQUIRED_EMAILS = {
 REQUIRED_PROFILES = {
     "github.com/NingyuanXu0", "orcid.org/0009-0001-2545-4370",
     "scholar.google.com.hk/citations", "www.researchgate.net/profile/Xu-Ningyuan",
+    "www.linkedin.com/in/ningyuan-xu-b059a7284/",
 }
 
 
@@ -139,7 +140,7 @@ def main():
         errors.append("Missing .nojekyll")
     if errors:
         raise SystemExit("\n".join(errors))
-    print(f"PASS: {len(pages)} HTML pages, all local assets/anchors, 6 owner email addresses, 3 supervisors with group/Scholar/email links, 3 patent applications, 4 profiles, 3 BibTeX entries, JSON-LD and XML.")
+    print(f"PASS: {len(pages)} HTML pages, all local assets/anchors, 6 owner email addresses, 3 supervisors with group/Scholar/email links, 3 patent applications, {len(REQUIRED_PROFILES)} profiles, 3 BibTeX entries, JSON-LD and XML.")
     print("External profile destinations are supplied links; availability or login requirements remain controlled by those services.")
 
 

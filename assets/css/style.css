@@ -58,8 +58,8 @@ svg { flex-shrink: 0; }
 .theme-toggle, .menu-toggle { display: none; }
 .js-ready .theme-toggle { display: grid; }
 .hero { padding: 44px 0 32px; border-bottom: 1px solid var(--line); }
-.eyebrow { color: var(--muted); font-size: 1rem; margin-bottom: 16px; }
-.hero h1 { font: normal clamp(2.8rem, 5.6vw, 3.875rem)/1.15 var(--serif); letter-spacing: -.035em; margin-bottom: 12px; }
+.hero h1 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; font: normal clamp(2.8rem, 5.6vw, 3.875rem)/1.15 var(--serif); letter-spacing: -.035em; margin-bottom: 12px; }
+.native-name { font: normal .55em/1.4 'Songti SC', 'Noto Serif CJK SC', SimSun, serif; letter-spacing: 0; white-space: nowrap; }
 .subtitle { font: normal clamp(1.45rem, 2.8vw, 1.9rem)/1.4 var(--serif); color: var(--accent); margin-bottom: 22px; }
 .hero-intro { max-width: 78ch; margin-bottom: 22px; }
 .hero-links, .profile-links { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 28px; }
@@ -118,6 +118,9 @@ svg { flex-shrink: 0; }
 .supervisor-role { font-size: .9375rem; color: var(--muted); margin-bottom: 8px; }
 .supervisor-email { font-size: 1rem; overflow-wrap: anywhere; }
 .supervisor-links { display: flex; flex-wrap: wrap; flex-direction: column; align-items: flex-start; gap: 5px 20px; margin-top: 10px; font-size: 1rem; }
+.hobby-list { max-width: 82ch; margin: 0; padding-left: 1.25em; }
+.hobby-list li { padding-left: .2em; margin-bottom: 10px; }
+.hobby-list li:last-child { margin-bottom: 0; }
 .contact { border-bottom: 0; }
 .contact-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; }
 .personal-emails { display: flex; flex-direction: column; align-items: flex-start; gap: 9px; }
@@ -196,7 +199,6 @@ svg { flex-shrink: 0; }
   .wrap { width: calc(100% - 36px); }
   .brand { font-size: 1.375rem; }
   .hero { padding: 34px 0 32px; }
-  .eyebrow { font-size: .9375rem; }
   .hero h1 { font-size: 3rem; }
   .subtitle { font-size: 1.5rem; }
   .hero-links, .profile-links { gap: 8px 20px; }
