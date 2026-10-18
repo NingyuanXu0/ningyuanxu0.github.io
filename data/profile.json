@@ -2,7 +2,7 @@
   "name": "Ningyuan Xu",
   "native_name": "徐宁远",
   "site_url": "https://ningyuanxu.com",
-  "updated": "2026-10-17",
+  "updated": "2026-10-18",
   "location": "Singapore",
   "role": "M.Sc. student in Chemical Modelling",
   "affiliation": "Nanyang Technological University",
@@ -13,6 +13,9 @@
   "guestbook": {
     "repository": "NingyuanXu0/ningyuanxu0.github.io",
     "label": "guestbook"
+  },
+  "analytics": {
+    "measurement_id": "G-VTM1PGWZ71"
   },
   "profiles": [
     {

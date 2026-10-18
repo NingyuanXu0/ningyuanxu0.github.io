@@ -67,6 +67,9 @@ def make_head(p, title=None, path="/", description=None):
               "url": p["site_url"] + "/", "jobTitle": p["role"],
               "affiliation": {"@type": "CollegeOrUniversity", "name": p["affiliation"]},
               "sameAs": [x["url"] for x in p["profiles"]], "knowsAbout": p["interests"]}
+    measurement_id = p.get("analytics", {}).get("measurement_id", "")
+    analytics = (f'\n  <meta name="ga4-measurement-id" content="{E(measurement_id)}">'
+                 f'\n  <script src="{asset_url("assets/js/analytics.js")}" defer></script>') if measurement_id else ""
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -90,7 +93,7 @@ def make_head(p, title=None, path="/", description=None):
   <meta property="og:image:alt" content="Ningyuan Xu — Surface science and computational soft matter">
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">{json.dumps(person, ensure_ascii=False).replace('<', chr(92) + 'u003c')}</script>
-  <script src="{asset_url('assets/js/main.js')}" defer></script>
+  <script src="{asset_url('assets/js/main.js')}" defer></script>{analytics}
 </head>'''
 
 
@@ -282,6 +285,9 @@ def make_cv(p):
 
 
 def validate_profile(p):
+    measurement_id = p.get("analytics", {}).get("measurement_id", "")
+    if measurement_id and not re.fullmatch(r"G-[A-Z0-9]+", measurement_id):
+        raise ValueError("Invalid GA4 measurement ID")
     if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", p["guestbook"]["repository"]):
         raise ValueError("Invalid guestbook repository")
     if not re.fullmatch(r"[A-Za-z0-9_-]+", p["guestbook"]["label"]):
