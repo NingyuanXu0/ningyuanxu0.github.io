@@ -2,7 +2,7 @@
   "name": "Ningyuan Xu",
   "native_name": "徐宁远",
   "site_url": "https://ningyuanxu.com",
-  "updated": "2026-10-18",
+  "updated": "2026-10-28",
   "location": "Singapore",
   "role": "M.Sc. student in Chemical Modelling",
   "affiliation": "Nanyang Technological University",
@@ -381,6 +381,39 @@
     }
   ],
   "patents": [
+    {
+      "id": "xu2026glass",
+      "title": "Low-Haze, Highly Transparent Superhydrophobic Glass with Inorganic In Situ Bonding and Its Preparation Method",
+      "title_zh": "无机原位粘结型低雾度高透明超疏水玻璃及其制备方法",
+      "inventors": [
+        "Zhang, Y.",
+        "Shi, Z.",
+        "Wang, D.",
+        "Li, L.",
+        "Xu, N.",
+        "Guo, J.",
+        "Jiang, Y."
+      ],
+      "inventors_zh": [
+        "张一鸣",
+        "石珍旭",
+        "王德辉",
+        "李罗慧子",
+        "徐宁远",
+        "郭竣畅",
+        "姜艺菲"
+      ],
+      "applicant": "University of Electronic Science and Technology of China",
+      "application_number": "202611294286.8",
+      "year": 2026,
+      "status": "Application accepted",
+      "filing_date": "2026-08-25",
+      "acceptance_date": "2026-08-25",
+      "publication_number": "",
+      "publication_date": "",
+      "url": "",
+      "first_inventor": false
+    },
     {
       "id": "xu2026purification",
       "title": "A Dialysate-Free Blood Purification Device Driven by a Liquid–Gas Phase Transition",

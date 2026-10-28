@@ -118,9 +118,9 @@ def main():
                 errors.append(f"{page_name}: missing patent application {patent['application_number']}")
             if patent["publication_number"] and (patent["publication_number"] not in text or patent["url"] not in page.links):
                 errors.append(f"{page_name}: missing public patent record {patent['publication_number']}")
-    for profile in REQUIRED_PROFILES:
-        if not any(profile in link for link in home.links):
-            errors.append("Missing requested academic profile: " + profile)
+    for profile_url in REQUIRED_PROFILES:
+        if not any(profile_url in link for link in home.links):
+            errors.append("Missing requested academic profile: " + profile_url)
     for page_name in ("index.html", "cv.html"):
         page = pages[page_name]
         for meta in ("description", "viewport", "og:title", "og:image"):
@@ -140,7 +140,7 @@ def main():
         errors.append("Missing .nojekyll")
     if errors:
         raise SystemExit("\n".join(errors))
-    print(f"PASS: {len(pages)} HTML pages, all local assets/anchors, 6 owner email addresses, 3 supervisors with group/Scholar/email links, 3 patent applications, {len(REQUIRED_PROFILES)} profiles, 3 BibTeX entries, JSON-LD and XML.")
+    print(f"PASS: {len(pages)} HTML pages, all local assets/anchors, 6 owner email addresses, 3 supervisors with group/Scholar/email links, {len(profile['patents'])} patent applications, {len(REQUIRED_PROFILES)} profiles, 3 BibTeX entries, JSON-LD and XML.")
     print("External profile destinations are supplied links; availability or login requirements remain controlled by those services.")
 
 

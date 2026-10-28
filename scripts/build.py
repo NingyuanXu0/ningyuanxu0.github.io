@@ -122,21 +122,31 @@ def make_supervisors(p, heading_level=4):
     return '<div class="supervisor-grid">' + "".join(cards) + '</div>'
 
 
+def patent_summary(p):
+    first_inventor_count = sum(item["first_inventor"] for item in p["patents"])
+    return f'{len(p["patents"])} patent applications, including {first_inventor_count} as first inventor.'
+
+
 def make_patents(p):
     entries = []
     for item in p["patents"]:
         title = external(item["url"], E(item["title"])) if item["url"] else E(item["title"])
         inventors = authors({"authors": item["inventors"]})
+        position = item["inventors"].index("Xu, N.") + 1
+        role = "First inventor" if item["first_inventor"] else "Co-inventor"
+        applicant = f'\n            <p class="patent-record">Applicant: {E(item["applicant"])}</p>' if item.get("applicant") else ""
         publication = ""
         if item["publication_number"]:
             publication = f'<p class="patent-record">Published {human_date(item["publication_date"])} · {external(item["url"], E(item["publication_number"]))}</p>'
         elif item["status"] == "Application accepted":
-            publication = '<p class="patent-record">Application accepted</p>'
+            accepted = f' · {human_date(item["acceptance_date"])}' if item.get("acceptance_date") else ""
+            publication = f'<p class="patent-record">Application accepted{accepted}</p>'
         entries.append(f'''<article class="patent" id="{E(item['id'])}">
           <div class="pub-year">{item['year']}</div>
           <div class="patent-body">
+            <div class="pub-kicker"><span class="author-role">{role} ({position}/{len(item["inventors"])})</span></div>
             <h3 class="patent-title">{title}</h3>
-            <p class="authors">{inventors}</p>
+            <p class="authors">{inventors}</p>{applicant}
             <p class="patent-record">Application No. <span class="record-number">{E(item['application_number'])}</span> · Filed {human_date(item['filing_date'])}</p>
             {publication}
           </div>
@@ -212,7 +222,7 @@ def make_home(p):
     </section>
     <section id="patents" class="section" aria-labelledby="patents-heading">
       {section_head('<span id="patents-heading">Patent applications</span>')}
-      <p class="section-intro">First inventor on all three applications.</p>
+      <p class="section-intro">{patent_summary(p)}</p>
       {make_patents(p)}
     </section>
     <section id="background" class="section" aria-labelledby="background-heading">
@@ -276,7 +286,7 @@ def make_cv(p):
     <section class="cv-section"><h2>Research & teaching appointments</h2>{jobs}</section>
     <section class="cv-section"><h2>Selected research experience</h2>{research}</section>
     <section class="cv-section"><h2>Peer-reviewed publications</h2><ol class="cv-list">{pubs}</ol></section>
-    <section class="cv-section"><h2>Patent applications</h2><p>First inventor on all three applications.</p>{make_patents(p)}</section>
+    <section class="cv-section"><h2>Patent applications</h2><p>{patent_summary(p)}</p>{make_patents(p)}</section>
     <section class="cv-section"><h2>Technical skills</h2>{skills}</section>
     <section class="cv-section"><h2>Selected honours</h2><ul class="cv-list">{honours}</ul></section>
     <section class="cv-section"><h2>Supervisors</h2>{make_supervisors(p, heading_level=3)}</section>
@@ -328,7 +338,11 @@ def validate_profile(p):
     for item in p["patents"]:
         if not re.fullmatch(r"\d{12}\.[\dX]", item["application_number"]):
             raise ValueError("Invalid patent application number")
+        if item["first_inventor"] != (item["inventors"].index("Xu, N.") == 0):
+            raise ValueError("First-inventor label must match the ordered inventor list")
         date.fromisoformat(item["filing_date"])
+        if item.get("acceptance_date"):
+            date.fromisoformat(item["acceptance_date"])
         if item["publication_number"]:
             if not re.fullmatch(r"CN\d{9}[ABC]", item["publication_number"]) or not item["url"].startswith("https://"):
                 raise ValueError("Invalid public patent record")
