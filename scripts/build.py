@@ -12,6 +12,24 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 E = lambda value: html.escape(str(value), quote=True)
 
+# Runs before first paint so the saved or system theme never flashes; main.js keeps it in sync afterwards.
+THEME_BOOT = ("(function(){var d=document.documentElement,t=null;"
+              "try{t=localStorage.getItem('nx-theme')}catch(e){}"
+              "if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}"
+              "d.dataset.theme=t;d.classList.add('js-ready')})()")
+THEME_COLOURS = {"light": "#f6f8fb", "dark": "#0f1a2b"}
+
+
+def icon(paths, css, size=20):
+    return (f'<svg class="{css}" width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+            f'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{paths}</svg>')
+
+
+ICON_MOON = icon('<path d="M20.5 14.5A9 9 0 0 1 9.5 3.5a9 9 0 1 0 11 11Z"/>', "icon-moon", 19)
+ICON_SUN = icon('<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/>', "icon-sun", 19)
+ICON_MENU = icon('<path d="M4 7h16M4 12h16M4 17h16"/>', "icon-menu")
+ICON_CLOSE = icon('<path d="M6 6l12 12M18 6 6 18"/>', "icon-close")
+
 
 def asset_url(path):
     version = sha256((ROOT / path).read_bytes()).hexdigest()[:12]
@@ -50,6 +68,10 @@ def publication_role(paper):
     return f'{role} ({paper["author_position"]}/{len(paper["authors"])})'
 
 
+def role_class(lead):
+    return "author-role is-lead" if lead else "author-role"
+
+
 def journal_metrics(paper):
     metrics = paper["journal_metrics"]
     jif = external(metrics["impact_factor_url"], f'{metrics["jif_year"]} JIF: {E(metrics["impact_factor"])}',
@@ -78,8 +100,9 @@ def make_head(p, title=None, path="/", description=None):
   <title>{E(title)}</title>
   <meta name="description" content="{E(desc)}">
   <meta name="author" content="{E(p['name'])}">
-  <meta name="theme-color" content="#245c9e">
+  <meta name="theme-color" content="{THEME_COLOURS['light']}" data-light="{THEME_COLOURS['light']}" data-dark="{THEME_COLOURS['dark']}">
   <meta name="color-scheme" content="light dark">
+  <script>{THEME_BOOT}</script>
   <link rel="canonical" href="{E(canonical)}">
   <link rel="icon" href="{asset_url('assets/images/favicon.svg')}" type="image/svg+xml">
   <link rel="stylesheet" href="{asset_url('assets/css/style.css')}">
@@ -144,7 +167,7 @@ def make_patents(p):
         entries.append(f'''<article class="patent" id="{E(item['id'])}">
           <div class="pub-year">{item['year']}</div>
           <div class="patent-body">
-            <div class="pub-kicker"><span class="author-role">{role} ({position}/{len(item["inventors"])})</span></div>
+            <div class="pub-kicker"><span class="{role_class(item["first_inventor"])}">{role} ({position}/{len(item["inventors"])})</span></div>
             <h3 class="patent-title">{title}</h3>
             <p class="authors">{inventors}</p>{applicant}
             <p class="patent-record">Application No. <span class="record-number">{E(item['application_number'])}</span> · Filed {human_date(item['filing_date'])}</p>
@@ -173,7 +196,7 @@ def make_home(p):
         papers += f'''<article class="publication" id="{E(item['id'])}">
           <div class="pub-year">{item['year']}</div>
           <div class="pub-body">
-            <div class="pub-kicker"><span>{E(item['type'])}</span><span class="author-role">{E(publication_role(item))}</span></div>
+            <div class="pub-kicker"><span>{E(item['type'])}</span><span class="{role_class(item['first_author'])}">{E(publication_role(item))}</span></div>
             <h3 class="pub-title">{external('https://doi.org/' + item['doi'], E(item['title']))}</h3>
             <p class="authors">{authors(item)}</p>
             <p class="journal">{journal(item)}</p>
@@ -197,11 +220,11 @@ def make_home(p):
   <header class="site-header"><div class="wrap header-inner">
     <a class="brand" href="#top" aria-label="Ningyuan Xu home">Ningyuan Xu</a>
     <nav class="site-nav" id="site-nav" aria-label="Main navigation">
-      <a href="#about">About</a><a href="#research">Research</a><a href="#publications">Publications</a><a href="#patents">Patents</a><a href="#background">Background</a><a href="#hobbies">Interests</a><a href="#contact">Contact</a><a href="cv.html">CV ↗</a>
+      <a href="#about">About</a><a href="#research">Research</a><a href="#publications">Publications</a><a href="#patents">Patents</a><a href="#background">Background</a><a href="#hobbies">Interests</a><a href="#contact">Contact</a><a class="nav-cv" href="cv.html">CV ↗</a>
     </nav>
     <div class="header-controls">
-      <button type="button" class="icon-button theme-toggle" aria-label="Switch to dark theme" aria-pressed="false" title="Dark theme"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20.5 14.5A9 9 0 0 1 9.5 3.5a9 9 0 1 0 11 11Z"/></svg></button>
-      <button type="button" class="icon-button menu-toggle" aria-label="Toggle navigation" aria-controls="site-nav" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <button type="button" class="icon-button theme-toggle" aria-label="Switch to dark theme" aria-pressed="false" title="Dark theme">{ICON_MOON}{ICON_SUN}</button>
+      <button type="button" class="icon-button menu-toggle" aria-label="Toggle navigation" aria-controls="site-nav" aria-expanded="false">{ICON_MENU}{ICON_CLOSE}</button>
     </div>
   </div></header>
   <main id="main" class="wrap">
@@ -209,7 +232,7 @@ def make_home(p):
       <h1 id="hero-title"><span>{E(p['name'])}</span> <span class="native-name" lang="zh-Hans">（{E(p['native_name'])}）</span></h1>
       <p class="subtitle">{E(p['tagline'])}</p>
       <p class="hero-intro">{E(p['intro'])}</p>
-      <div class="hero-links"><a href="mailto:{E(p['primary_email'])}">{E(p['primary_email'])}</a><a href="cv.html">Academic CV ↗</a></div>
+      <div class="hero-links"><a class="button" href="mailto:{E(p['primary_email'])}">{E(p['primary_email'])}</a><a class="button button-ghost" href="cv.html">Academic CV ↗</a></div>
       <div class="profile-links" aria-label="Academic and professional profiles">{profile_links}</div>
     </section>
     <section id="research" class="section" aria-labelledby="research-heading">
@@ -280,10 +303,11 @@ def make_cv(p):
     return make_head(p, p["name"] + " | Academic CV", "/cv.html") + f'''
 <body id="top"><main class="wrap cv-page">
     <div class="cv-toolbar"><a href="index.html" class="text-link">← Back to homepage</a><button type="button" class="button" data-print>Print / Save as PDF</button></div>
+    <article class="cv-sheet">
     <header class="cv-head"><h1>{E(p['name'])}</h1><p>{E(p['role'])} · {E(p['affiliation'])}, {E(p['location'])}<br><a href="mailto:{E(p['primary_email'])}">{E(p['primary_email'])}</a> · <a href="{E(p['site_url'])}">{E(p['site_url'].removeprefix('https://'))}</a></p><div class="cv-profiles">{profiles}</div></header>
     <section class="cv-section"><h2>Research profile</h2><p>{E(p['intro'])}</p></section>
     <section class="cv-section"><h2>Education</h2>{edu}</section>
-    <section class="cv-section"><h2>Research & teaching appointments</h2>{jobs}</section>
+    <section class="cv-section"><h2>Research &amp; teaching appointments</h2>{jobs}</section>
     <section class="cv-section"><h2>Selected research experience</h2>{research}</section>
     <section class="cv-section"><h2>Peer-reviewed publications</h2><ol class="cv-list">{pubs}</ol></section>
     <section class="cv-section"><h2>Patent applications</h2><p>{patent_summary(p)}</p>{make_patents(p)}</section>
@@ -291,7 +315,32 @@ def make_cv(p):
     <section class="cv-section"><h2>Selected honours</h2><ul class="cv-list">{honours}</ul></section>
     <section class="cv-section"><h2>Supervisors</h2>{make_supervisors(p, heading_level=3)}</section>
     <p class="cv-footnote">Public academic CV · Updated {E(p['updated'])}</p>
+    </article>
   </main><div class="live-message" role="status" aria-live="polite" aria-atomic="true"></div></body></html>'''
+
+
+def make_404(p):
+    # Self-contained: GitHub Pages serves this file from any path, so it cannot rely on relative assets.
+    css = ("*{box-sizing:border-box}"
+           ":root{color-scheme:light dark;--paper:#f6f8fb;--surface:#fff;--ink:#1c2b42;--muted:#536379;--accent:#245c9e;--line:#d9e2ee;--dot:#c3d1e2}"
+           "@media (prefers-color-scheme:dark){:root{--paper:#0f1a2b;--surface:#162338;--ink:#e8eef7;--muted:#a9bad1;--accent:#8fbcf2;--line:#2b3d57;--dot:#34496a}}"
+           "body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:var(--paper);color:var(--ink);"
+           "font:17px/1.7 system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased;"
+           "background-image:radial-gradient(circle,var(--dot) 1.1px,transparent 1.3px);background-size:22px 22px}"
+           "main{width:100%;max-width:520px;padding:44px 40px;background:var(--surface);border:1px solid var(--line);border-radius:16px;"
+           "box-shadow:0 1px 2px rgba(28,43,66,.04),0 18px 40px -20px rgba(28,43,66,.25)}"
+           "small{font:600 13px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.12em;color:var(--accent)}"
+           "h1{font:400 clamp(38px,9vw,52px)/1.15 Georgia,'Times New Roman',serif;letter-spacing:-.02em;margin:18px 0 14px}"
+           "p{margin:0 0 26px;color:var(--muted)}"
+           "a{display:inline-flex;align-items:center;min-height:44px;padding:10px 20px;border-radius:999px;background:var(--accent);"
+           "color:var(--paper);font-size:15px;font-weight:600;text-decoration:none}"
+           "a:hover{filter:brightness(1.08)}a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}"
+           "@media (max-width:480px){main{padding:32px 24px}}")
+    return ('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+            f'<meta name="robots" content="noindex"><title>Page not found | {E(p["name"])}</title><style>{css}</style></head>'
+            f'<body><main><small>404 / {E(p["name"].upper())}</small><h1>Page not found.</h1>'
+            '<p>The page may have moved. You can find my research, publications and contact details on the homepage.</p>'
+            f'<a href="{E(p["site_url"])}/">Return to homepage →</a></main></body></html>')
 
 
 def validate_profile(p):
@@ -373,7 +422,7 @@ def main():
     (out / "robots.txt").write_text(f'User-agent: *\nAllow: /\nSitemap: {p["site_url"]}/sitemap.xml\n', encoding="utf-8")
     urls = "".join(f'<url><loc>{E(p["site_url"] + path)}</loc><lastmod>{p["updated"]}</lastmod></url>' for path in ("/", "/cv.html"))
     (out / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n', encoding="utf-8")
-    (out / "404.html").write_text('''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Page not found | Ningyuan Xu</title><style>body{background:#f8fafc;color:#213047;font:18px/1.7 Arial,Helvetica,sans-serif;margin:0;min-height:100vh;display:grid;place-items:center}main{max-width:480px;padding:35px}h1{font:52px Georgia,serif;margin:12px 0}small{font:14px Arial,Helvetica,sans-serif;color:#245c9e}a{color:#245c9e;text-underline-offset:5px}</style></head><body><main><small>404 / NINGYUAN XU</small><h1>Page not found.</h1><p>The page may have moved. You can find my research, publications and contact details on the homepage.</p><a href="{{site_url}}/">Return to homepage →</a></main></body></html>'''.replace("{{site_url}}", E(p["site_url"])), encoding="utf-8")
+    (out / "404.html").write_text(make_404(p), encoding="utf-8")
     print(f"Built homepage, CV, bibliography and metadata in {out}")
 
 
